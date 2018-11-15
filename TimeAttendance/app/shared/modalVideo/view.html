@@ -1,0 +1,21 @@
+﻿<style>
+    .modal-image  {
+        width: 100%;
+    }
+
+    video {
+        width: 100%;
+    }
+</style>
+
+<div class="modal-header no-padding" style="background-color: black; border: none; padding-left: 10px !important;">
+    <h3 class="modal-title text-orange text-uppercase" style="color: white">{{vmPopup.Model.PlateNumber}}</h3>
+</div>
+<div class="modal-body no-padding">
+    <div class="row">
+        <div class="col-md-10 modal-image">
+            <video html5-video='{{ [videoPath] }}' style="width: 100%; height: auto"
+                   autoplay='true' controls='true'></video>
+        </div>
+    </div>
+</div>

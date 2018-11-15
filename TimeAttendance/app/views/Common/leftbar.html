@@ -1,0 +1,26 @@
+﻿<!-- SIDEBAR - START -->
+<!-- MAIN MENU - START -->
+<perfect-scrollbar class="page-sidebar-wrapper" id="main-menu-wrapper" wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" menuheight>
+    <!-- USER INFO - START -->
+    <!--<div class="col-md-12 profile-info padding-top-15" ng-show="app.settings.menuProfile">
+        <div class="profile-image col-md-12 col-sm-12 col-xs-12 text-center">
+            <a ng-click="FnUserProfiles()" style="cursor:pointer;">
+                <img class="img-responsive" ng-src="{{authentication.imageLink!=''?(serviceBase + authentication.imageLink):NoAvatar}}">
+                <span class="profile-status available"></span>
+            </a>
+        </div>
+        <div class="profile-details col-md-12 col-sm-12 col-xs-12">
+            <h3>
+                <a ui-sref="app.ui.profile">{{authentication.userName}}</a>
+            </h3>
+        </div>
+    </div>-->
+    <!-- USER INFO - END -->
+    <!-- nav -->
+
+    <nav ui-nav ng-include="'app/views/Common/nav.html'"></nav>
+
+    <!-- nav -->
+</perfect-scrollbar>
+<!-- MAIN MENU - END -->
+<!--  SIDEBAR - END -->

@@ -1,0 +1,310 @@
+<!--
+<copyright company="nhantinsoft.vn">
+Author: Vũ Văn Văn
+Created Date: 30/09/2017 13:08
+</copyright>
+-->
+<div class='content-wrapper padding-top-0' ng-init="app.settings.pagetitle = 'Thống kê'">
+    <form>
+        <section class="box">
+            <header class="panel_header">
+                <h2 class="title pull-left">Thổng kê ngày {{vm.Model.DayNow}}</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                </div>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center" width="150px">Đi muộn</th>
+                                    <th class="text-center" width="150px">Về sớm</th>
+                                    <th class="text-center" width="150px">Vắng mặt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataDay[0].Name}}</b></td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataDay[0].TotalLate}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataDay[0].TotalLate > vm.Model.ListDataDay[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataDay[0].TotalLate < vm.Model.ListDataDay[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataDay[0].TotalLate == vm.Model.ListDataDay[1].TotalLate"></span>
+                                        {{vm.Model.ListDataDay[0].TotalLate - vm.Model.ListDataDay[1].TotalLate | abs}})
+
+                                    </td>
+                                    <td class="text-center">
+                                        <b>
+                                            {{vm.Model.ListDataDay[0].TotalEarly}}
+                                        </b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataDay[0].TotalEarly > vm.Model.ListDataDay[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataDay[0].TotalEarly < vm.Model.ListDataDay[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataDay[0].TotalEarly == vm.Model.ListDataDay[1].TotalEarly"></span>
+                                        {{vm.Model.ListDataDay[0].TotalEarly - vm.Model.ListDataDay[1].TotalEarly | abs}})
+                                    </td>
+                                    <td class="text-center">
+                                        <b>
+                                            {{vm.Model.ListDataDay[0].TotalAbsent}}
+                                        </b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataDay[0].TotalAbsent > vm.Model.ListDataDay[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataDay[0].TotalAbsent < vm.Model.ListDataDay[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataDay[0].TotalAbsent == vm.Model.ListDataDay[1].TotalAbsent"></span>
+                                        {{vm.Model.ListDataDay[0].TotalAbsent - vm.Model.ListDataDay[1].TotalAbsent | abs}})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataDay[1].Name}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataDay[1].TotalLate}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataDay[1].TotalEarly}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataDay[1].TotalAbsent}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  map_progress">
+                        <h5>Đi muộn  <span class="text-muted"><small> ({{ vm.Model.LatePercent}}%)</small></span></h5>
+                        <div class="progress margin-bottom-10">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.Model.LatePercent}}%"></div>
+                        </div>
+                        <h5>Đi sớm <span class="text-muted"><small>({{ vm.Model.EarlyPercent}}%)</small></span></h5>
+                        <div class="progress margin-bottom-10">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.Model.EarlyPercent}}%"></div>
+                        </div>
+                        <h5>Vắng mặt  <span class="text-muted"><small> ({{ vm.Model.AbsentPercent}}%)</small></span></h5>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.Model.AbsentPercent}}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="box">
+            <header class="panel_header">
+                <h2 class="title pull-left">Thổng kê tuần {{vm.Model.WeekNow}}</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                </div>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center" width="150px">Đi muộn</th>
+                                    <th class="text-center" width="150px">Về sớm</th>
+                                    <th class="text-center" width="150px">Vắng mặt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataWeek[0].Name}}</b></td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataWeek[0].TotalLate}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataWeek[0].TotalLate > vm.Model.ListDataWeek[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataWeek[0].TotalLate < vm.Model.ListDataWeek[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataWeek[0].TotalLate == vm.Model.ListDataWeek[1].TotalLate"></span>
+                                        {{vm.Model.ListDataWeek[0].TotalLate - vm.Model.ListDataWeek[1].TotalLate | abs}})
+                                    </td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataWeek[0].TotalEarly}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataWeek[0].TotalEarly > vm.Model.ListDataWeek[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataWeek[0].TotalEarly < vm.Model.ListDataWeek[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataWeek[0].TotalEarly == vm.Model.ListDataWeek[1].TotalEarly"></span>
+                                        {{vm.Model.ListDataWeek[0].TotalEarly - vm.Model.ListDataWeek[1].TotalEarly | abs}})
+                                    </td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataWeek[0].TotalAbsent}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataWeek[0].TotalAbsent > vm.Model.ListDataWeek[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataWeek[0].TotalAbsent < vm.Model.ListDataWeek[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataWeek[0].TotalAbsent == vm.Model.ListDataWeek[1].TotalAbsent"></span>
+                                        {{vm.Model.ListDataWeek[0].TotalAbsent - vm.Model.ListDataWeek[1].TotalAbsent | abs}})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataWeek[1].Name}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataWeek[1].TotalLate}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataWeek[1].TotalEarly}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataWeek[1].TotalAbsent}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4 class=" margin-top-10 margin-bottom-10 text-danger">Top đi muộn trong tuần</h4>
+                            <perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                                <div style="height:250px">
+                                    <div class="task ng-scope" ng-repeat="row in vm.Model.ListLateTopInWeek"><span class="label label-danger" style="width:30px;">{{row.Total}}</span> &nbsp; {{row.Code}} : {{row.EmployeeName}}</div>
+                                </div>
+                            </perfect-scrollbar>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4 class=" margin-top-10 margin-bottom-10 text-success">Top về sớm trong tuần</h4>
+                            <perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                                <div style="height:250px">
+                                    <div class="task ng-scope" ng-repeat="row in vm.Model.ListEarlyTopInWeek"><span class="label label-warning" style="width:30px;">{{row.Total}}</span> &nbsp; {{row.Code}} : {{row.EmployeeName}}</div>
+                                </div>
+                            </perfect-scrollbar>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div id="chartWeek" style="margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="box">
+            <header class="panel_header">
+                <h2 class="title pull-left">Thổng kê tháng {{vm.Model.MonthNow}}</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                </div>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center" width="150px">Đi muộn</th>
+                                    <th class="text-center" width="150px">Về sớm</th>
+                                    <th class="text-center" width="150px">Vắng mặt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataMonth[0].Name}}</b></td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataMonth[0].TotalLate}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataMonth[0].TotalLate > vm.Model.ListDataMonth[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataMonth[0].TotalLate < vm.Model.ListDataMonth[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataMonth[0].TotalLate == vm.Model.ListDataMonth[1].TotalLate"></span>
+                                        {{vm.Model.ListDataMonth[0].TotalLate - vm.Model.ListDataMonth[1].TotalLate | abs}})
+                                    </td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataMonth[0].TotalEarly}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataMonth[0].TotalEarly > vm.Model.ListDataMonth[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataMonth[0].TotalEarly < vm.Model.ListDataMonth[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataMonth[0].TotalEarly == vm.Model.ListDataMonth[1].TotalEarly"></span>
+                                        {{vm.Model.ListDataMonth[0].TotalEarly - vm.Model.ListDataMonth[1].TotalEarly | abs}})
+                                    </td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataMonth[0].TotalAbsent}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataMonth[0].TotalAbsent > vm.Model.ListDataMonth[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataMonth[0].TotalAbsent < vm.Model.ListDataMonth[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataMonth[0].TotalAbsent == vm.Model.ListDataMonth[1].TotalAbsent"></span>
+                                        {{vm.Model.ListDataMonth[0].TotalAbsent - vm.Model.ListDataMonth[1].TotalAbsent | abs}})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataMonth[1].Name}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataMonth[1].TotalLate}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataMonth[1].TotalEarly}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataMonth[1].TotalAbsent}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4 class=" margin-top-10 margin-bottom-10 text-danger">Top đi muộn trong tháng</h4>
+                            <perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                                <div style="height:250px">
+                                    <div class="task ng-scope" ng-repeat="row in vm.Model.ListLateTopInMonth"><span class="label label-danger" style="width:30px;">{{row.Total}}</span> &nbsp; {{row.Code}} : {{row.EmployeeName}}</div>
+                                </div>
+                            </perfect-scrollbar>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4 class=" margin-top-10 margin-bottom-10 text-success">Top về sớm trong tháng</h4>
+                            <perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                                <div style="height:250px">
+                                    <div class="task ng-scope" ng-repeat="row in vm.Model.ListEarlyTopInMonth"><span class="label label-warning" style="width:30px;">{{row.Total}}</span> &nbsp; {{row.Code}} : {{row.EmployeeName}}</div>
+                                </div>
+                            </perfect-scrollbar>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div id="chartMonth" style="margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="box">
+            <header class="panel_header">
+                <h2 class="title pull-left">Thổng kê quý {{vm.Model.QuarterNow}}</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                </div>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center" width="150px">Đi muộn</th>
+                                    <th class="text-center" width="150px">Về sớm</th>
+                                    <th class="text-center" width="150px">Vắng mặt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataQuarter[0].Name}}</b></td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataQuarter[0].TotalLate}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataQuarter[0].TotalLate > vm.Model.ListDataQuarter[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataQuarter[0].TotalLate < vm.Model.ListDataQuarter[1].TotalLate"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataQuarter[0].TotalLate == vm.Model.ListDataQuarter[1].TotalLate"></span>
+                                        {{vm.Model.ListDataQuarter[0].TotalLate - vm.Model.ListDataQuarter[1].TotalLate | abs}})
+                                    </td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataQuarter[0].TotalEarly}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataQuarter[0].TotalEarly > vm.Model.ListDataQuarter[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataQuarter[0].TotalEarly < vm.Model.ListDataQuarter[1].TotalEarly"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataQuarter[0].TotalEarly == vm.Model.ListDataQuarter[1].TotalEarly"></span>
+                                        {{vm.Model.ListDataQuarter[0].TotalEarly - vm.Model.ListDataQuarter[1].TotalEarly | abs}})
+                                    </td>
+                                    <td class="text-center">
+                                        <b>{{vm.Model.ListDataQuarter[0].TotalAbsent}}</b>&nbsp;
+                                        (<span class="glyphicon glyphicon-arrow-up text-danger" title="Tăng" ng-if="vm.Model.ListDataQuarter[0].TotalAbsent > vm.Model.ListDataQuarter[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-arrow-down text-success" title="Giảm" ng-if="vm.Model.ListDataQuarter[0].TotalAbsent < vm.Model.ListDataQuarter[1].TotalAbsent"></span>
+                                        <span class="glyphicon glyphicon-resize-vertical text-accent" title="Ổn định" ng-if="vm.Model.ListDataQuarter[0].TotalAbsent == vm.Model.ListDataQuarter[1].TotalAbsent"></span>
+                                        {{vm.Model.ListDataQuarter[0].TotalAbsent - vm.Model.ListDataQuarter[1].TotalAbsent | abs}})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><b>{{vm.Model.ListDataQuarter[1].Name}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataQuarter[1].TotalLate}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataQuarter[1].TotalEarly}}</b></td>
+                                    <td class="text-center"><b>{{vm.Model.ListDataQuarter[1].TotalAbsent}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4 class=" margin-top-10 margin-bottom-10 text-danger">Top đi muộn trong quý</h4>
+                            <perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                                <div style="height:250px">
+                                    <div class="task ng-scope" ng-repeat="row in vm.Model.ListLateTopInQuarter"><span class="label label-danger" style="width:30px;">{{row.Total}}</span> &nbsp; {{row.Code}} : {{row.EmployeeName}}</div>
+                                </div>
+                            </perfect-scrollbar>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4 class=" margin-top-10 margin-bottom-10 text-success">Top về sớm trong quý</h4>
+                            <perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                                <div style="height:250px">
+                                    <div class="task ng-scope" ng-repeat="row in vm.Model.ListEarlyTopInQuarter"><span class="label label-warning" style="width:30px;">{{row.Total}}</span> &nbsp; {{row.Code}} : {{row.EmployeeName}}</div>
+                                </div>
+                            </perfect-scrollbar>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div id="chartQuarter" style="margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>

@@ -1,0 +1,53 @@
+<!--
+<copyright company="nhantinsoft.vn">
+Author: NTS-TUNGNT
+Created Date: 18/09/2016 12:09
+</copyright>
+-->
+<style type="text/css">
+    .app-modal .modal-dialog {
+        width: 700px;
+        height: 600px;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title text-danger text-uppercase">{{vm.ModalTitle}}</h3>
+</div>
+
+<div class="modal-body padding-10">
+    <form name="outerForm">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="form-group form-group-custom">
+                    <label class="form-label col-sm-3 col-lg-4">Tên chức danh: <span class='text-danger text-strong'>&nbsp;*</span></label>
+                    <div class="controls col-sm-9 col-lg-8">
+                        <input type="text" class="form-control" data-ng-model="vm.Model.Name" maxlength="100" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="form-group form-group-custom">
+                    <label class="form-label  col-sm-3 col-lg-4">Mô tả: </label>
+                    <div class="controls col-sm-9 col-lg-8">
+                        <textarea rows="4" cols="50" class="form-control" data-ng-model="vm.Model.Description"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" ng-disabled="outerForm.$invalid" data-ng-click="vm.FnSave()">
+        <i class="fa fa-save"></i> &nbsp;<span>Lưu</span>
+    </button>
+    <button type="button" class="btn btn-danger" data-ng-click="vm.FnClose()">
+        <i class="fa fa-power-off"></i> &nbsp;<span>
+            Đóng
+        </span>
+    </button>
+</div>
+

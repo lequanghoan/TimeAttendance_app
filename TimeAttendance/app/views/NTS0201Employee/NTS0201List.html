@@ -1,0 +1,198 @@
+<!--
+<copyright company="nhantinsoft.vn">
+ Author: Mr.Hiep
+ Created Date: 10/10/2017
+</copyright>
+-->
+
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Danh sách nhân viên';">
+    <section class="box collapsed">
+        <header class="panel_header">
+            <h2 class="title pull-left">Tìm kiếm</h2>
+            <div class="actions panel_actions pull-right">
+                <i class="box_toggle material-icons">expand_less</i>
+            </div>
+        </header>
+        <div class="content-body">
+            <form name="searchForm">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Chức vụ</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.JobTitleId"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListJobTitle">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Phòng ban</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.DepartmentId"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListDepartment">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Vào từ ngày</label>
+                            <div class="controls">
+                                <datepicker-full model-date="vm.Model.DateFrom"></datepicker-full>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Tới ngày</label>
+                            <div class="controls">
+                                <datepicker-full model-date="vm.Model.DateTo"></datepicker-full>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Mã nhân viên</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Code">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Họ tên</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">CMND</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.IdentifyCardNumber">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Giới tính</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.Gender">
+                                    <option value="-1">&lt;&lt; Tất cả &gt;&gt;</option>
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+             
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                        <button class="btn btn-success margin-top-10" type="submit" ng-click="vm.FnSearch()">
+                            <i class="fa fa-search"></i> &nbsp;<span>Tìm kiếm</span>
+                        </button>
+                        <button class="btn btn-default margin-top-10" ng-click="vm.FnClear()">
+                            <i class="fa fa-refresh"></i> &nbsp;<span>Làm mới</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Danh sách nhân viên</h2>
+            <div class="actions panel_actions pull-right">
+                <i class="box_toggle material-icons">expand_more</i>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row margin-bottom-5">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+                    <label class="form-label">Tổng số <span class="bold text-danger">{{totalItems}}</span> nhân viên</label>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                    <button type="button" class="btn btn-success" ng-click="vm.FnShowCreate()">
+                        <i class="fa fa-plus"></i> &nbsp;<span>Thêm mới</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <perfect-scrollbar wheel-propagation="true" suppress-scroll-y="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                        <table class="table table-bordered table-hover table-sorting" style="min-width:1800px">
+                            <thead>
+                                <tr ng-init="FnSearchPub = vm.FnSearch">
+                                    <th width="50px" class="text-center">STT</th>
+                                    <th width="100px" class="text-center">Xử lý</th>
+                                    <th width="100px"  class="text-center">Ảnh</th>
+                                    <th sort callback-fn="FnSearchPub({by:'Code',type:reverse})" width="130px">Mã nhân viên</th>
+                                    <th sort callback-fn="FnSearchPub({by:'Name',type:reverse})" width="170px">Họ tên</th>
+                                    <th sort callback-fn="FnSearchPub({by:'JobTitleName',type:reverse})" width="140px">Chức vụ</th>
+                                    <th sort callback-fn="FnSearchPub({by:'DepartmentName',type:reverse})" width="140px">Phòng ban</th>
+                                    <th sort callback-fn="FnSearchPub({by:'InComeDate',type:reverse})"  width="120px">Ngày vào</th>
+                                    <th sort callback-fn="FnSearchPub({by:'OutComeDate',type:reverse})" width="120px">Ngày nghỉ</th>
+                                    <th sort callback-fn="FnSearchPub({by:'DateOfBirth',type:reverse})" width="120px">Ngày sinh</th>
+                                    <th sort callback-fn="FnSearchPub({by:'Gender',type:reverse})" width="110px">Giới tính</th>
+                                    <th sort callback-fn="FnSearchPub({by:'IdentifyCardNumber',type:reverse})" width="140px">CMND</th>
+                                    <th sort callback-fn="FnSearchPub({by:'Address',type:reverse})">Địa chỉ</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in vm.ListResult">
+                                    <td class="text-center">{{StartIndex + ($index+1)}}</td>
+                                    <td  class="text-center">
+                                        <button type="button"  ng-click="vm.FnShowUpdate(row.EmployeeId)" class="btn btn-sm btn-warning" title="Cập nhật">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button type="button" ng-click="vm.FnDelete(row.EmployeeId)" class="btn btn-sm btn-danger" title="Xóa">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
+                                    </td>
+                                    <td  class="text-center"><img ng-if="row.Avata!=''"   ng-click="vm.FnShowImage(row.Avata,row.Code,row.Name,null,row.JobTitleName)"  ng-src="{{row.Avata}}"  style="max-height:42px;max-width:55px;" /></td>
+                                    <td>{{row.Code}}</td>
+                                    <td>{{row.Name}}</td>
+                                    <td>{{row.JobTitleName}}</td>
+                                    <td>{{row.DepartmentName}}</td>
+                                    <td>{{row.InComeDate | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{row.OutComeDate | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{row.DateOfBirth | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{row.Gender}}</td>
+                                    <td>{{row.IdentifyCardNumber}}</td>
+                                    <td>{{row.Address}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </perfect-scrollbar>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                    <span class="form-label-custom">
+                        Số bản ghi/trang:
+                    </span>
+                    <select style="width:120px" class="form-control" data-ng-model="vm.Model.PageSize" data-ng-options="unit.Id as unit.Name for unit in vm.ListPageSize" ng-change="vm.FnSearch()"></select>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 " ng-show="totalItems>vm.Model.PageSize">
+                    <pagination ng-change="vm.FnSearch()" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="vm.Model.PageSize"></pagination>
+                </div>
+            </div>
+            <hr class="margin-top-10; margin-bottom-10" />
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-view btn-warning"><i class="fa fa-edit"></i></button>&nbsp;<small class="padding-right-20">Cập nhật nhân viên</small>
+                    <button class="btn btn-view btn-danger"><i class="fa fa-remove"></i></button>&nbsp;<small class="padding-right-20">Xóa nhân viên</small>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

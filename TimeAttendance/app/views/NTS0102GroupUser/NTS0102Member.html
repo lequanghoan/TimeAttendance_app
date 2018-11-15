@@ -1,0 +1,62 @@
+<!--
+<copyright company="nhantinsoft.vn">
+Author: Vũ Văn Văn
+Created Date: 30/09/2017 13:08
+</copyright>
+-->
+<style type="text/css">
+    .app-modal .modal-dialog {
+        width: 80%;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title text-danger text-uppercase">Thành viên trong nhóm: {{vm.GroupName}}</h3>
+</div>
+<div class="modal-body padding-15">
+    <form name="listForm">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <label class="form-label" style="line-height:35px;">Tổng số <span class="bold text-danger">{{totalItemsM}}</span> thành viên</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <table class="table table-bordered margin-bottom-0">
+                    <thead>
+                        <tr>
+                            <th width="50px" class="text-center">STT</th>
+                            <th width="150px">Tên đăng nhập</th>
+                            <th width="200px">Họ tên</th>
+                            <th width="180px">Email</th>
+                            <th width="120px">SĐT</th>
+                            <th width="150px">Chức vụ</th>
+                            <th>Đơn vị quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in vm.ListData | startPageFrom: vm.begin | limitTo: 5">
+                            <td class="text-center">{{row.index}}</td>
+                            <td>{{row.Name}}</td>
+                            <td>{{row.FullName}}</td>
+                            <td>{{row.Email}}</td>
+                            <td>{{row.PhoneNumber}}</td>
+                            <td>{{row.Role}}</td>
+                            <td>{{row.UnitName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row" ng-show="totalItemsM>numPerPageM">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <pagination ng-change="vm.FnSearch()" total-items="totalItemsM" ng-model="currentPageM" max-size="maxSizeM" class="pagination-sm" boundary-links="true" items-per-page="numPerPageM"></pagination>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-ng-click="vm.FnClose()">
+        <i class="fa fa-power-off"></i> &nbsp;<span>Thoát</span>
+    </button>
+</div>

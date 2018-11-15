@@ -1,0 +1,51 @@
+﻿<!--
+<copyright company="nhantinsoft.vn">
+Author: NTS-TUNGNT
+Created Date: 18/09/2016 12:09
+</copyright>
+-->
+<style type="text/css">
+    .app-modal .modal-dialog {
+        width: 60%;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title text-danger text-uppercase">Training ảnh {{vm.Model.JobTitleName}}: {{vm.Model.EmployeeCode}} - {{vm.Model.EmployeeName}}</h3>
+</div>
+
+<div class="modal-body padding-10">
+    <form name="outerForm">
+       
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <div class="form-group">
+                    <label class="form-label">Ảnh đại diện</label>
+                    <div class="controls">
+                        <img ng-if="vm.Model.Avata!=''" ng-src="{{vm.Model.Avata}}" style="max-height:100%;max-width:100%;" />
+                      
+                     </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <div class="form-group">
+                    <label class="form-label">Ảnh training</label>
+                    <div class="controls">
+                        <img ng-if="vm.Model.ImageFace!=''" ng-src="{{vm.serviceBase}}{{vm.Model.ImageFace}}" style="max-height:100%;max-width:100%;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success"  data-ng-click="vm.FnTraining()">
+        <i class="fa fa-save"></i> &nbsp;<span>Training ảnh</span>
+    </button>
+    <button type="button" class="btn btn-danger" data-ng-click="vm.FnClose()">
+        <i class="fa fa-power-off"></i> &nbsp;<span>
+            Đóng
+        </span>
+    </button>
+</div>
+

@@ -1,0 +1,169 @@
+﻿<Page
+    x:Class="TimeAttendance.Client.Views.SettingConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeAttendance.Client"
+    xmlns:ctl="using:TimeAttendance.Client.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <CommandBar x:Name="commandBar" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"  Background="{StaticResource NTS-Blue}">
+            <CommandBar.Content>
+                <ctl:PageHeader>
+                    <ctl:PageHeader.HeaderContent>
+                        <TextBlock Text="Cấu hình camera" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                    </ctl:PageHeader.HeaderContent>
+                </ctl:PageHeader>
+            </CommandBar.Content>
+        </CommandBar>
+
+        <Grid Grid.Row="1">
+            <Grid Padding="6,6,0,6"  Background="{StaticResource NTS-BG}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="10,0,0,0" Grid.Column="0"  Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Background="Transparent" Click="AddCameraButton_Click"  x:Name="AddCameraButton" ToolTipService.ToolTip="Thêm camera">
+                            <SymbolIcon Symbol="Add"  Foreground="#00265c"/>
+                            <Button.Flyout>
+                                <Flyout x:Name="cameraFlyout">
+                                    <StackPanel Orientation="Vertical">
+                                        <ComboBox Name="cameraType" Header="Loại camera (*)" Width="300" Margin="0,10,0,0" SelectionChanged="CameraType_SelectionChanged"></ComboBox>
+                                        <TextBox Name="cameraIP" Header="Địa chỉ IP camera (*)" Width="300" Margin="0,10,0,0" TextChanged="cameraInfo_TextChanged"/>
+                                        <TextBox Name="cameraUser" Header="Tài khoản (*)" Width="300" Margin="0,10,0,0" TextChanged="cameraInfo_TextChanged"/>
+                                        <TextBox Name="cameraPass" Header="Mật khẩu (*)" Width="300" Margin="0,10,0,0" TextChanged="cameraInfo_TextChanged"/>
+                                        <TextBox Name="cameraURI" Header="Đường dẫn URI (*)" Width="300" Margin="0,10,0,0"/>
+                                        <TextBox Name="cameraIndex" Header="Thứ tự hiển thị (*)" Width="300" Margin="0,10,0,0" TextChanging="cameraIndex_TextChanging"/>
+                                        <TextBlock Text="Giới hạn vùng phân tích hình ảnh" Width="300" Margin="0,10,0,0"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBox Name="boxWidth" Header="Rộng" Width="60" Margin="5,5,0,0" TextChanging="cameraIndex_TextChanging"/>
+                                            <TextBox Name="boxHeight" Header="Dài" Width="60" Margin="10,5,0,0" TextChanging="cameraIndex_TextChanging"/>
+                                            <TextBox Name="boxPointX" Header="X" Width="60" Margin="10,5,0,0" TextChanging="cameraIndex_TextChanging"/>
+                                            <TextBox Name="boxPointY" Header="Y" Width="60" Margin="10,5,0,0" TextChanging="cameraIndex_TextChanging"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                                            <Button x:Name="saveButton" Content="Thêm" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0" Click="saveButton_Click"/>
+                                            <Button x:Name="closeButton" Content="Đóng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="closeButton_Click"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                        <Button Background="Transparent" Click="EditCameraButton_Click"  x:Name="EditCameraButton" ToolTipService.ToolTip="Sửa camera">
+                            <SymbolIcon Symbol="Edit"  Foreground="#00265c"/>
+                        </Button>
+                        <Button Background="Transparent" Click="DelCameraButton_Click"  x:Name="DelCameraButton" ToolTipService.ToolTip="Xóa camera">
+                            <SymbolIcon Symbol="Delete"  Foreground="#00265c"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 10 0">
+                        <Button Background="Transparent"  x:Name="saveSetting" Foreground="#00265c" ToolTipService.ToolTip="Cấu hình">
+                            <SymbolIcon Symbol="Setting"/>
+                            <Button.Flyout>
+                                <Flyout x:Name="settingFlyout">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Cấu hình server" Width="400" Margin="0,10,0,0" FontWeight="Bold"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBox Name="ServiceBase" Header="Server API (*)" Width="250"  Margin="5,5,0,0"/>
+                                            <TextBox Name="TotalFrame" Header="Số mẫu phân tích/1ms" Width="150"  Margin="5,5,0,0" TextChanging="cameraIndex_TextChanging"/>
+                                        </StackPanel>
+                                        <TextBlock Text="Cấu hình service bus" Width="400" Margin="0,10,0,0" FontWeight="Bold"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBox Name="QueueURL" Header="Queue URL (*)" Width="400"  Margin="5,5,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBox Name="AccessKeyName" Header="Shared Access Policies (*)" Width="200"  Margin="5,5,0,0"/>
+                                            <TextBox Name="AccessKeyValue" Header="Access key (*)" Width="200"  Margin="5,5,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBox Name="SBTopicName" Header="Topic name" Width="200"  Margin="5,5,0,0"/>
+                                            <TextBox Name="SBKeySend" Header="Key" Width="200"  Margin="5,5,0,0"/>
+                                        </StackPanel>
+                                        <TextBlock Text="Cấu hình azure storage" Width="400" Margin="0,10,0,0" FontWeight="Bold"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBox Name="ASAccountName" Header="Account name (*)" Width="200"  Margin="5,5,0,0"/>
+                                            <TextBox Name="ASAccountKey" Header="Account key (*)" Width="200"  Margin="5,5,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBox Name="ASContainer" Header="Container (*)" Width="200"  Margin="5,5,0,0"/>
+                                            <TextBox Name="ASUrlHost" Header="Url host image (*)" Width="200"  Margin="5,5,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                                            <Button Content="Lưu" x:Name="saveAPI" Click="saveAPI_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0"/>
+                                            <Button x:Name="closeSetting" Click="closeSetting_Click" Content="Đóng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <ListView x:Name="itemListView"  Grid.Row="1" Grid.ColumnSpan="3" Margin="10,0,10,10"  Background="{StaticResource NTS-BG-Bold}" SelectionChanged="itemListView_SelectionChanged">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Margin="6" BorderBrush="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="STT"   TextWrapping="NoWrap" FontWeight="Bold" Foreground="#00265c"/>
+                                <TextBlock Grid.Column="1" Text="IP camera"   TextWrapping="NoWrap" FontWeight="Bold" Foreground="#00265c"/>
+                                <TextBlock Grid.Column="2" Text="Tài khoản"   TextWrapping="NoWrap" FontWeight="Bold" Foreground="#00265c"/>
+                                <TextBlock Grid.Column="3" Text="Mật khẩu"   TextWrapping="NoWrap" FontWeight="Bold" Foreground="#00265c"/>
+                                <TextBlock Grid.Column="4" Text="URI camera" TextWrapping="NoWrap" FontWeight="Bold"  Foreground="#00265c"/>
+                                <TextBlock Grid.Column="5" Text="Thứ tự hiển thị" TextAlignment="Center"  TextWrapping="NoWrap" FontWeight="Bold"  Foreground="#00265c"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="6" BorderBrush="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Index}"   TextWrapping="NoWrap"  Foreground="#00265c"/>
+                                <TextBlock Grid.Column="1" Text="{Binding CameraIP}"   TextWrapping="NoWrap"  Foreground="#00265c"/>
+                                <TextBlock Grid.Column="2" Text="{Binding CameraUser}"   TextWrapping="NoWrap"  Foreground="#00265c"/>
+                                <TextBlock Grid.Column="3" Text="{Binding CameraPass}"   TextWrapping="NoWrap"  Foreground="#00265c"/>
+                                <TextBlock Grid.Column="4" Text="{Binding StreaURI}" TextWrapping="NoWrap"  Foreground="#00265c"/>
+                                <TextBlock Grid.Column="5" Text="{Binding IndexView}"  TextAlignment="Center" TextWrapping="NoWrap"  Foreground="#00265c"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12">
+            <Image Stretch="Uniform" Source="ms-appx:///Assets/nts-logo.png" MaxWidth="200" VerticalAlignment="Top" />
+            <StackPanel Margin="20,0,0,0" >
+                <TextBlock Text="Công ty Cổ phần Công nghệ Nhân Tín" Style="{StaticResource NTSCaptionTextBlockStyle}" FontWeight="Bold"/>
+                <TextBlock Text="Địa chỉ: 3/87 Nguyễn Văn Trỗi, Phương Liệt, Thanh Xuân, Hà Nội" Style="{StaticResource NTSCaptionTextBlockStyle}" />
+                <TextBlock Text="Website: http://nhantinsoft.vn" Style="{StaticResource NTSCaptionTextBlockStyle}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

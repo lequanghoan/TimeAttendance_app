@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="DataStatistics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="1.0.9" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.ServiceBus" Version="2.1.0-beta4" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.6" />
+    <PackageReference Include="Microsoft.ProjectOxford.Face" Version="1.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="WindowsAzure.Storage" Version="7.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TimeAttendance.Business\TimeAttendance.Business.csproj" />
+    <ProjectReference Include="..\TimeAttendance.Model\TimeAttendance.Model.csproj" />
+    <ProjectReference Include="..\TimeAttendance.ServiceBus\TimeAttendance.ServiceBus.csproj" />
+    <ProjectReference Include="..\TimeAttendance.Utils\TimeAttendance.Utils.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Configuration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+</Project>

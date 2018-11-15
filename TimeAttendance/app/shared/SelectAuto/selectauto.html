@@ -1,0 +1,10 @@
+﻿<div>
+    <ui-select ng-model="modelChoice" on-select="choose($select)" ng-disabled="isDisabled" ng-class="{'disabled': isDisabled}">
+        <ui-select-match>
+            <span ng-bind="SelectName"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="item in (listValue | filter: $select.search) track by item[id]">
+            <span ng-bind="item[name]"></span>
+        </ui-select-choices>
+    </ui-select>
+</div>

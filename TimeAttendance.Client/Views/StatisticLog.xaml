@@ -1,0 +1,80 @@
+﻿<Page
+    x:Class="FaceVip.Views.StatisticLog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:ctl="using:FaceVip.Controls"
+    xmlns:local="using:FaceVip.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource AppBarItemDisabledForegroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="100*" />
+        </Grid.RowDefinitions>
+        <CommandBar x:Name="commandBar" VerticalAlignment="Top" HorizontalContentAlignment="Stretch">
+            <CommandBar.Content>
+                <ctl:PageHeader>
+                    <ctl:PageHeader.HeaderContent>
+                        <TextBlock Text="Thông kê lưu lượng khách hàng" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                    </ctl:PageHeader.HeaderContent>
+                </ctl:PageHeader>
+            </CommandBar.Content>
+        </CommandBar>
+        <Grid Grid.Row="1" Padding="6">
+            <Charting:Chart Grid.Row="1" x:Name="LineChart" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="1300" Height="400">
+            </Charting:Chart>
+            <!--<Charting:Chart x:Name="PieChart" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="1300" Height="400">
+            </Charting:Chart>-->
+        </Grid>
+        <!--<Charting:Chart x:Name="ColumnChart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="399" Height="400">
+        </Charting:Chart>-->
+        <Grid Grid.Row="2" Background="#FF222222">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Khách hàng Vip" HorizontalAlignment="Left" Style="{StaticResource PageTitleTextBlockStyle}" Foreground="Gray"/>
+            <Rectangle Height="1" Fill="Gray" Margin="0,6,0,0" Grid.Row="1"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="customerVip"
+                      SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="65">
+                                <Image Width="60" Height="60" Source="{Binding LinkImge}" Margin="5"></Image>
+                                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{Binding CustomerName}" Margin="0,15,24,0" Height="50" Width="200"/>
+                                <ProgressBar Value="{Binding Count}" Maximum="{Binding Max}" Height="20" Width="500" ToolTipService.ToolTip="{Binding Count}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Column="1"
+                      x:Name="customerVip2"
+                      SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="65">
+                                <Image Width="60" Height="60" Source="{Binding LinkImge}" Margin="5"></Image>
+                                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{Binding CustomerName}" Margin="0,15,24,0" Height="50" Width="200"/>
+                                <ProgressBar Value="{Binding Count}" Maximum="{Binding Max}" Height="20" Width="500" ToolTipService.ToolTip="{Binding Count}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+        <!--<Charting:Chart x:Name="BarChart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="400">
+        </Charting:Chart>
+        <Charting:Chart x:Name="BubbleChart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="400">
+        </Charting:Chart>-->
+    </Grid>
+</Page>

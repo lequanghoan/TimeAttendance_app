@@ -1,0 +1,31 @@
+﻿{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
+    //Cấu hình Service Bus
+    "ServiceBusConnection": "Endpoint=sb://attendance-time.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xc5sLIaG4ud6wbz7nGxpCXz0dvZyZtKWtI+v5Gw6Ux4=",
+    "FaceDetectionQueueName": "face-detection",
+    "AttendanceQueueName": "attendance-time",
+    "NotificationQueueName": "notification",
+    //Cấu hình Storage
+    "StorageAccountName": "vcbpocstag",
+    "StorageAccountKey": "y7CJhYwlTMqaiuBr5Ao4GtnwuSBY5hIahaUK5+Y5U5F9aokOl2HqyhK7SriOscdWZoYIiFp0MPIOeWwfBU21mA==",
+    "StorageContainer": "timeattendance",
+    "UrlHostImage": "https://vcbpocstag.blob.core.windows.net/",
+    //Cấu hình key face api
+    "ApiFaceKey": "74870eba77964193badc5f8e637c65ad",
+    "ApiRegionKey": "southeastasia",
+    "WorkspaceKey": "vcb",
+    "GroupTimeAttendance": "uet-timeattendance",
+    "EndTime": "17:30",
+    "StartTime": "08:00",
+    //"RedisConnection": "103.78.88.118:6379,abortConnect=false,ssl=false,password=nhantinsoft123456!",
+    "RedisConnection": "timeattendance-poc.redis.cache.windows.net:6380,password=trfVpGgQKVs1Xm1hJHUzoPSgUeUN54P8LwDC9jxsFaE=,ssl=True,abortConnect=False",
+    //Cấu hình kết nối database
+    "TimeAttendanceEntities": "metadata=res://*/Repositories.TimeAttendanceModel.csdl|res://*/Repositories.TimeAttendanceModel.ssdl|res://*/Repositories.TimeAttendanceModel.msl;provider=System.Data.SqlClient;provider connection string=\";data source=tcp:attendtime.database.windows.net,1433;Initial Catalog=TimeAttendance;Persist Security Info=False;User ID=nts;Password=nhantinsoft123456!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;\";",
+    //Cấu hình Notification
+    "NotificationHub": "attendance-time",
+    "NotificationConnection": "Endpoint=sb://attendancetime.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=0N8v1KBsTF7OW4UJUzdh9CJVcP7pzyxyKufJrYdGSfg="
+  }
+}

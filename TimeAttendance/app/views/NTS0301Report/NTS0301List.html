@@ -1,0 +1,239 @@
+<!--
+<copyright company="nhantinsoft.vn">
+ Author: Mr.Hiep
+ Created Date: 10/10/2017
+</copyright>
+-->
+<style>
+    .text-uppercase{margin-right:7px}
+</style>
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Thống kê thời gian chấm công ';">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Tiêu chí thống kê</h2>
+            <div class="actions panel_actions pull-right">
+                <i class="box_toggle material-icons">expand_less</i>
+            </div>
+        </header>
+        <div class="content-body">
+            <form name="searchForm">
+                <div class="row">
+                   
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Chức vụ</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.JobTitleId"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListJobTitle">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Phòng ban</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.DepartmentId"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListDepartment">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Mã nhân viên</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Code">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Họ tên</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Name">
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 text-right margin-top-15">
+                      
+                    </div>-->
+                    <div class="clearfix"></div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label">Thống kê</label>
+                            <div class="controls">
+                                <label class="icheck text-uppercase">
+                                    <input type="radio" value="1" name="ExportType" required ng-model="vm.Model.Type">
+                                    <i></i> Ngày
+                                </label>&nbsp;
+
+                                <label class="icheck text-uppercase">
+                                    <input type="radio" value="2" name="ExportType" required ng-model="vm.Model.Type">
+                                    <i></i> Tuần
+                                </label>
+                                <label class="icheck text-uppercase">
+                                    <input type="radio" value="3" name="ExportType" required ng-model="vm.Model.Type">
+                                    <i></i> Tháng
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-if="vm.Model.Type=='1'">
+                        <div class="form-group">
+                            <label class="form-label">Chọn ngày từ</label>
+                            <div class="controls">
+                                <datepicker-full model-date="vm.Model.Date"></datepicker-full>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-if="vm.Model.Type=='1'">
+                        <div class="form-group">
+                            <label class="form-label">Chọn ngày đến</label>
+                            <div class="controls">
+                                <datepicker-full model-date="vm.Model.DateTo"></datepicker-full>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-if="vm.Model.Type=='2'">
+                        <div class="form-group">
+                            <label class="form-label">Tuần(1 đến 52)</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Week" ng-change="vm.ChangeMonth()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-if="vm.Model.Type=='2'">
+                        <div class="form-group">
+                            <label class="form-label">Thời gian</label>
+                            <div class="controls">
+                                <input type="text" disabled="disabled" class="form-control" data-ng-model="vm.Model.WeekView" ng-change="vm.ChangeMonth()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-if="vm.Model.Type=='3'">
+                        <div class="form-group">
+                            <label class="form-label">Chọn tháng</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.Month"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListMonth">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-if="vm.Model.Type=='2' || vm.Model.Type=='3'">
+                        <div class="form-group">
+                            <label class="form-label">Chọn năm</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.Year" ng-change="vm.ChangeMonth()"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListYear">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                        <button class="btn btn-success margin-top-10" type="submit" ng-click="vm.FnSearch()">
+                            <i class="fa fa-search"></i> &nbsp;<span>Tìm kiếm</span>
+                        </button>
+                        <button class="btn btn-default margin-top-10" ng-click="vm.FnClear()">
+                            <i class="fa fa-refresh"></i> &nbsp;<span>Làm mới</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Thống kê thời gian chấm công </h2>
+            <div class="actions panel_actions pull-right">
+                <i class="box_toggle material-icons">expand_more</i>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row margin-bottom-5">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+                    <label class="form-label">Tổng số <span class="bold text-danger">{{totalItems}}</span> bản ghi</label>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                    <button type="button" class="btn btn-success" ng-click="vm.FnSearchEx()">
+                        <i class="fa fa-file-excel-o"></i> &nbsp;<span>Xuất EXCEL</span>
+                    </button>
+                </div>
+                </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <perfect-scrollbar wheel-propagation="true" suppress-scroll-y="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                        <table class="table table-bordered table-hover table-sorting" style="min-width:1800px">
+                            <thead>
+                                <tr ng-init="FnSearchPub = vm.FnSearch">
+                                    <th width="50px" class="text-center">STT</th>
+
+                                    <th sort callback-fn="FnSearchPub({by:'Date',type:reverse})" width="100px">Ngày</th>
+                                    <th width="80px">Thứ</th>
+                                    <th width="110px" class="text-center">Khuôn mặt vào</th>
+                                    <th width="80px" class="text-center">Ảnh vào</th>
+                                    <th width="100px" class="text-center">Khuôn mặt ra</th>
+                                    <th width="80px" class="text-center">Ảnh ra</th>
+                                    <th sort callback-fn="FnSearchPub({by:'EmployeeCode',type:reverse})">Mã nhân viên</th>
+                                    <th sort callback-fn="FnSearchPub({by:'EmployeeName',type:reverse})" width="170px">Họ tên</th>
+                                    <th sort callback-fn="FnSearchPub({by:'JobTitleName',type:reverse})" width="170px">Chức vụ</th>
+                                    <th sort callback-fn="FnSearchPub({by:'DepartmentName',type:reverse})" width="170px">Phòng ban</th>
+                                    <th sort callback-fn="FnSearchPub({by:'TimeIn',type:reverse})" width="110px">Giờ vào</th>
+                                    <th sort callback-fn="FnSearchPub({by:'TimeOut',type:reverse})" width="110px">Giờ ra</th>
+                                    <th sort callback-fn="FnSearchPub({by:'Total',type:reverse})" width="120px" class="text-center"> Tổng phút</th>
+                                    <th sort callback-fn="FnSearchPub({by:'LateMinutes',type:reverse})" width="120px" class="text-center">Đi muộn (phút)</th>
+                                    <th sort callback-fn="FnSearchPub({by:'EarlyMinutes',type:reverse})" width="120px" class="text-center">Về sớm (phút)</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in vm.ListResult">
+                                    <td class="text-center">{{StartIndex + ($index+1)}}</td>
+
+                                    <td>{{row.Date | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{row.DayView}}</td>
+                                    <td class="text-center"><img ng-click="vm.FnShowImage(ServiceBase+row.ImageFaceIn,row.EmployeeCode,row.EmployeeName,row.TimeIn,row.JobTitleName)" ng-if="row.ImageFaceIn!='' && row.ImageFaceIn!=null" ng-src="{{ServiceBase}}{{row.ImageFaceIn}}" style="max-height:42px;max-width:55px;" /></td>
+                                    <td class="text-center"><img ng-click="vm.FnShowImage(ServiceBase+row.ImageIn,row.EmployeeCode,row.EmployeeName,row.TimeIn,row.JobTitleName)" ng-if="row.ImageIn!='' && row.ImageIn!=null" ng-src="{{ServiceBase}}{{row.ImageIn}}" style="max-height:42px;max-width:55px;" /></td>
+                                    <td class="text-center"><img ng-click="vm.FnShowImage(ServiceBase+row.ImageFaceOut,row.EmployeeCode,row.EmployeeName,row.TimeOut,row.JobTitleName)" ng-if="row.ImageFaceOut!='' && row.ImageFaceOut!=null" ng-src="{{ServiceBase}}{{row.ImageFaceOut}}" style="max-height:42px;max-width:55px;" /></td>
+                                    <td class="text-center"><img ng-click="vm.FnShowImage(ServiceBase+row.ImageOut,row.EmployeeCode,row.EmployeeName,row.TimeOut,row.JobTitleName)" ng-if="row.ImageOut!='' && row.ImageOut!=null" ng-src="{{ServiceBase}}{{row.ImageOut}}" style="max-height:42px;max-width:55px;" /></td>
+                                    <td>{{row.EmployeeCode}}</td>
+                                    <td>{{row.EmployeeName}}</td>
+                                    <td>{{row.JobTitleName}}</td>
+                                    <td>{{row.DepartmentName}}</td>
+                                    <td>{{row.TimeIn | date:'HH:mm'}}</td>
+                                    <td>{{row.TimeOut | date:'HH:mm'}}</td>
+                                    <td class="text-center">{{row.Total }}</td>
+                                    <td class="text-center">{{row.LateMinutes }}</td>
+                                    <td class="text-center">{{row.EarlyMinutes}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </perfect-scrollbar>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                    <span class="form-label-custom">
+                        Số bản ghi/trang:
+                    </span>
+                    <select style="width:120px" class="form-control" data-ng-model="vm.Model.PageSize" data-ng-options="unit.Id as unit.Name for unit in vm.ListPageSize" ng-change="vm.FnSearch()"></select>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 " ng-show="totalItems>vm.Model.PageSize">
+                    <pagination ng-change="vm.FnSearch()" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="vm.Model.PageSize"></pagination>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

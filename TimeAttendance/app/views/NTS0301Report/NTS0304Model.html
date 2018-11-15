@@ -1,0 +1,30 @@
+<!--
+<copyright company="nhantinsoft.vn">
+Author: Hiepdv
+Created Date: 21/10/2017
+</copyright>
+-->
+<style type="text/css">
+    .app-modal .modal-dialog {
+        width: 45%;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title text-danger text-uppercase">
+        <span ng-if="JobTitleName!=''">{{JobTitleName}}:</span>
+            <span ng-if="EmployeeCode!=''"> {{EmployeeCode}} - {{EmployeeName}}</span>
+            <span ng-if="Time!=null">({{Time | date:'dd/MM/yyyy HH:mm'}})</span>
+</h3>
+</div>
+<div class="modal-body padding-15">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <img ng-if="Image!=''" ng-src="{{Image}}" style="max-height:100%;max-width:100%;" />
+            </div>
+        </div>
+</div>
+<div class="modal-footer" >
+    <button type="button" class="btn btn-danger" data-ng-click="vm.FnClose()">
+        <i class="fa fa-power-off"></i> &nbsp;<span>Thoát</span>
+    </button>
+</div>

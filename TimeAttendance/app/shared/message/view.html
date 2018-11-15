@@ -1,0 +1,31 @@
+
+<div class="modal-header">
+    <h4 class="modal-title text-orange text-uppercase">{{vmMessage.Messageinfo.title}}</h4>
+</div>
+<div class="modal-body">
+
+    <form name="addForm">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-1" >
+                    <i ng-if="vmMessage.Messageinfo.type == 0" class="material-icons" aria-hidden="true" style="color:blue;font-size:50px;">report_problem</i>
+                    <i ng-if="vmMessage.Messageinfo.type == 1" class="material-icons" aria-hidden="true" style="color:red;font-size:50px;">report_problem</i>
+                    <i ng-if="vmMessage.Messageinfo.type == 2" class="material-icons" aria-hidden="true" style="color:yellow;font-size:50px;">report_problem</i>
+
+                    <!--<span ng-if="vmMessage.Messageinfo.type == 0" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color:blue"></span>
+        <span ng-if="vmMessage.Messageinfo.type == 1" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color:red"></span>
+        <span ng-if="vmMessage.Messageinfo.type == 2" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color:yellow"></span>-->
+                </div>
+                <div class="col-md-11" style="vertical-align:middle">
+                    <p>{{vmMessage.Messageinfo.content}}</p>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" ng-click="vmMessage.FnConfirm()" class="btn btn-danger">{{vmMessage.Messageinfo.ok}}</button>
+
+</div>
+

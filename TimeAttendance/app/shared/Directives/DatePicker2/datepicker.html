@@ -1,0 +1,11 @@
+﻿<div>
+    <form name="dpk">
+        <div class="input-group" inputgroup>
+            <!--<input type="date" class="form-control datepicker" datepicker-local-date uib-datepicker-popup="{{Format}}" ng-model="modelDate" ng-required="isRequired" name="datevalue" ng-disabled="disableDatepicker"
+                   is-open="DatePicker.open2" datepicker-options="dateOptions" close-text="Đóng" current-text="Hôm nay" clear-text="Xóa" current-text="Hôm nay" clear-text="Xóa" format-date/>-->
+            <input type="text" name="datevalue" data-date-format="dd MMMM YYYY" class="form-control datepicker" uib-datepicker-popup="{{Format}}" ng-model="modelDate" is-open="DatePicker.open2" datepicker-options="dateOptions"
+                   close-text="Đóng" current-text="Hôm nay" clear-text="Xóa" ng-required="isRequired" ng-disabled="disableDatepicker" placeholder="dd/MM/yyyy" ng-change="DatePicker.ChangeDate()" datepicker-append-to-body="true"/>
+            <span class="input-group-addon" ng-click="DatePicker.open($event,'open2')"><i class="fa fa-calendar" style="color: #999;"></i></span>
+        </div>
+    </form>
+</div>

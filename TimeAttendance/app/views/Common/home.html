@@ -1,0 +1,25 @@
+﻿<!-- header -->
+<div ng-controller="homeController">
+    <div data-ng-include="'app/views/Common/topbar.html'" class="page-topbar {{app.settings.menuFolded ? 'sidebar_shift' : ''}} {{app.settings.chatFolded ? '' : 'chat_shift'}}">
+    </div>
+    <!-- / header -->
+    <!-- START CONTAINER -->
+
+    <div class="page-container row-fluid" ui-sectionbox>
+
+        <!-- leftbar -->
+        <div data-ng-include="'app/views/Common/leftbar.html'" class="page-sidebar {{app.settings.menuFolded ? 'collapseit' : 'expandit'}}  {{app.settings.chatFolded ? '' : 'chat_shift'}}"></div>
+        <!-- / leftbar -->
+        <!-- START CONTENT -->
+        <section id="main-content" class="{{app.settings.menuFolded ? 'sidebar_shift' : ''}} {{app.settings.chatFolded ? '' : 'chat_shift'}}">
+            <div class="pull-left mobile-pagetitle"><h1>{{app.settings.pagetitle}}</h1></div>
+            <section class="wrapper main-wrapper">
+                <div ui-view></div>
+                
+            </section>
+
+        </section>
+
+    </div>
+</div>
+<!-- / footer -->

@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="TimeAttendance.Client.Views.RealTimeDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeAttendance.Client.Views"
+    xmlns:ctl="using:TimeAttendance.Client.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    SizeChanged="OnPageSizeChanged"
+    mc:Ignorable="d">
+
+
+    <Grid x:Name="MainGrid" 
+            EntranceNavigationTransitionInfo.IsTargetElement="True"  Background="{StaticResource NTS-BG}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="0.01*" />
+            <RowDefinition />
+            <RowDefinition Height="0.05*" />
+        </Grid.RowDefinitions>
+        <CommandBar x:Name="commandBar" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Background="{StaticResource NTS-Blue}">
+            <CommandBar.Content>
+                <ctl:PageHeader>
+                    <ctl:PageHeader.HeaderContent>
+                        <TextBlock Text="Attendance Time" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap" />
+                    </ctl:PageHeader.HeaderContent>
+                </ctl:PageHeader>
+            </CommandBar.Content>
+        </CommandBar>
+        <!--<StackPanel Grid.Row="1">
+            <TextBlock Text="Vip Customer Recognition" Foreground="White" HorizontalAlignment="Center" FontFamily="Segoe UI Light" Style="{StaticResource HeaderTextBlockStyle}"/>
+        </StackPanel>-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition/>
+                <!--<ColumnDefinition Width="350"/>-->
+                <ColumnDefinition Width="0.05*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center"  Background="{StaticResource NTS-BG-Bold}"  Margin="0 0 10 0">
+                    <Grid>
+                        <Grid x:Name="cameraHostGrid">
+                            <ctl:CameraControl x:Name="cameraControl" />
+                        </Grid>
+
+                        <TextBlock x:Name="debugText" Opacity="0.6" Margin="0,0,2,0"  HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="3" x:Name="initializingUI" Visibility="Collapsed">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Foreground="White" Text="Resetting data..." Style="{StaticResource HeaderTextBlockStyle}"/>
+                        <ProgressRing x:Name="initializingProgressRing" Height="100" Width="100" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <!--<Grid Grid.Column="2"  Background="{StaticResource NTS-BG-Bold}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Lịch sử vào - ra" HorizontalAlignment="Left" Style="{StaticResource PageTitleTextBlockStyle}" Foreground="#00265c"/>
+                <Rectangle Height="1" Fill="Gray" Margin="0,6,0,0" Grid.Row="1"/>
+                <ListView Grid.Row="2" 
+                      x:Name="personGroupPeopleListView"
+                      ItemsSource="{Binding PersonsInCurrentGroup}"
+                      SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderBrush="Gray" Background="LightGray" BorderThickness="2" Margin="0 0 5 0"></Border>
+                                <SymbolIcon Symbol="Clock" Foreground="{Binding Color}"/>
+                                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" Text="{Binding DateTime}" Margin="0,0,24,0" Padding="0 10 0 0" Foreground="{Binding Color}" FontWeight="ExtraBold" FontSize="15"/>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" Text="{Binding Name}" Margin="0,0,5,0" Foreground="{Binding Color}" FontWeight="Bold"  FontSize="13"/>
+                                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" Text="{Binding JobTitle}" Margin="0,0,5,0"  Foreground="{Binding Color}" FontSize="12"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    --><!--<ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Background"  Value="CadetBlue" />
+                        </Style>
+                    </ListView.ItemContainerStyle>--><!--
+                </ListView>
+            </Grid>-->
+        </Grid>
+    </Grid>
+</Page>
+
+    

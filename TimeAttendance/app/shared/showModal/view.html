@@ -1,0 +1,19 @@
+﻿
+<div class="modal-header">
+    <h3 class="modal-title text-orange text-uppercase">Thông báo</h3>
+</div>
+<div class="modal-body">
+    <div class="row margin-bottom-15 bg-white">
+        <div class="col-md-2">
+            <span ng-if="vmPopup.Messageinfo.type == 0" class="glyphicon glyphicon-exclamation-sign " style="font-size: 46px; color: blue" aria-hidden="true"></span>
+            <span ng-if="vmPopup.Messageinfo.type == 1" class="glyphicon glyphicon-exclamation-sign" style="font-size: 46px; color: red" aria-hidden="true"></span>
+            <span ng-if="vmPopup.Messageinfo.type == 2" class="glyphicon glyphicon-exclamation-sign" style="font-size: 46px; color: yellow" aria-hidden="true"></span>
+        </div>
+        <div class="col-md-10">
+            <p>{{vmPopup.Messageinfo.title}}</p>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="vmPopup.ok()">OK</button>
+</div>

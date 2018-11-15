@@ -1,0 +1,29 @@
+﻿<div class="login_page">
+    <div class="login-wrapper">
+        <div id="login" class="login loginpage col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8">
+            <h2 class="text-center" style="color:#fff">PHẦN MỀM QUẢN LÝ CHẤM CÔNG</h2>
+            <p class="text-center no-margin version">Version {{loginData.version}}</p>
+            <form name="form" class="form-validation">
+                <p>
+                    <input type="text" name="text" id="username" class="input" placeholder="Tài khoản" data-ng-model="loginData.userName" required autofocus />
+                </p>
+                <p>
+                    <input type="password" name="pwd" id="password" class="input" placeholder="Mật khẩu" data-ng-model="loginData.password" required />
+                </p>
+
+                <p class="submit">
+                    <button type="submit" data-ng-click="login()" ng-disabled='form.$invalid' class="btn btn-danger btn-block">ĐĂNG NHẬP</button>
+                </p>
+
+                <div class="text-danger text-center">
+                    {{message}}
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+
+

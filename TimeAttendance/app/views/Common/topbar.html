@@ -1,0 +1,139 @@
+﻿<!-- START TOPBAR -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        setInterval(function () {
+            // Create a newDate() object and extract the seconds of the current time on the visitor's
+            var seconds = new Date().getSeconds();
+            // Add a leading zero to seconds value
+            $("#sec").html((seconds < 10 ? "0" : "") + seconds);
+        }, 1000);
+
+        setInterval(function () {
+            // Create a newDate() object and extract the minutes of the current time on the visitor's
+            var minutes = new Date().getMinutes();
+            // Add a leading zero to the minutes value
+            $("#min").html((minutes < 10 ? "0" : "") + minutes);
+        }, 1000);
+
+        setInterval(function () {
+            // Create a newDate() object and extract the hours of the current time on the visitor's
+            var hours = new Date().getHours();
+            // Add a leading zero to the hours value
+            $("#hours").html((hours < 10 ? "0" : "") + hours);
+        }, 1000);
+
+    });
+</script>
+<style>
+
+</style>
+<div class='logo-area' ui-sref="app.device-map" style="cursor:pointer;">
+    <div class="logo-img">
+        <img width="170" height="60" src="http://nhantinsoft.vn/images/OfficialNhanTinLogo_Full_432x162.png" />
+        <!--<span>BỘ TƯ LỆNH BIÊN PHÒNG</span>-->
+    </div>
+    <!--<div class="title-unit">CỤC PHÒNG CHỐNG TPMT</div>-->
+</div>
+<div class='quick-area'>
+    <div class='pull-left slantit'>
+        <ul class="info-menu left-links list-inline list-unstyled">
+            <li class="sidebar-toggle-wrap">
+                <a href data-toggle="sidebar" class="sidebar_toggle" ng-click="app.settings.menuFolded = !app.settings.menuFolded; menuChatToggle('menu',app.settings.menuFolded) ">
+                    <i class="material-icons">menu</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-left pagetitle">
+        <h1 class="softwarename">{{TitleSoftware}}<span>PHẦN MỀM QUẢN LÝ CHẤM CÔNG</span></h1>
+        <!--<h1 class="functionname">{{app.settings.pagetitle}}</h1>-->
+        <h1 class="functionname">{{app.settings.pagetitle}}</h1>
+    </div>
+    <div class="pull-left quickleft" style=''>
+        <ul class="info-menu right-links list-inline list-unstyled">
+            <li ng-controller="NotifyCtrl as notify" class="dropdown tab " uib-dropdown>
+                <!--<a href class="dropdown-toggle toggle" uib-dropdown-toggle>
+                    <i class="material-icons">notifications</i>
+                    <span class="badge badge-accent">{{notify.TotalDocument}}</span>
+                </a>-->
+                <ul class="dropdown-menu  notifications animated fadeIn">
+                    <li class="total">
+                        <span class="small">
+                            Bạn có <strong>{{notify.TotalDocument}}</strong> thông báo mới.
+                            <a href="javascript:;" class="pull-right">Đánh dấu đã đọc</a>
+                        </span>
+                    </li>
+                    <li class="list">
+                        <perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" min-scrollbar-length="20" class='ps-scrollbar'>
+                            <ul class="dropdown-menu-list list-unstyled">
+                                <li ng-repeat="item in notify.ListData">
+                                    <!-- available: success, warning, info, error -->
+                                    <a href="javascript:;">
+                                        <div class="notice-icon">
+                                            <!--<i class="material-icons">{{item.statusicon}}</i>-->
+                                        </div>
+                                        <div>
+                                            <span class="name">
+                                                <h4>{{item.Name}}</h4>
+                                                <span class="time small">{{item.IssuedDate |date:'dd/MM/yyyy'}}</span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </perfect-scrollbar>
+                    </li>
+                    <li class="external">
+                        <a href="javascript:;">
+                            <span>Đọc tất cả thông báo</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class='pull-right quickright'>
+        <ul class="info-menu right-links list-inline list-unstyled">
+            <li class="dropdown profile tab" uib-dropdown>
+                <a class="dropdown-toggle toggle" href="javascript:void(0)" uib-dropdown-toggle ng-click="FnShowConfig()">
+                    <i class="material-icons">settings</i>
+                </a>
+            </li>
+            <li class="dropdown profile">
+                <div class="clocktop">
+                    <span id="hours"></span>
+                    <span id="point">:</span>
+                    <span id="min"></span>
+                    <span id="point">:</span>
+                    <span id="sec"></span>
+                </div>
+            </li>
+            <li class="dropdown profile tab" uib-dropdown>
+                <a class="dropdown-toggle toggle" uib-dropdown-toggle>
+                    <!--<img ng-src="img/no-avatar.png" alt="user-image" class="img-circle img-inline">-->
+                    <img ng-src="{{authentication.imageLink!=''?( authentication.imageLink):NoAvatar}}" alt="user-image" class="img-circle img-inline">
+                    <span class="profile-status available"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right profile animated fadeIn">
+                    <li ng-show="authentication.isAuth" href class="auto">
+                        <a style="cursor:pointer;" ng-click="FnUserProfiles()">
+                            <i class="material-icons">person</i> {{authentication.userName}}
+                        </a>
+                    </li>
+                    <li ng-show="authentication.isAuth" href class="auto">
+                        <a style="cursor:pointer;" ng-click="FnChangePassword()">
+                            <i class="material-icons">dashboard</i> Đổi mật khẩu
+                        </a>
+                    </li>
+                    <li ng-show="authentication.isAuth" href class="last">
+                        <a style="cursor:pointer;" ng-click="fnLogOut()">
+                            <i class="material-icons">lock</i> Thoát
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- END TOPBAR -->

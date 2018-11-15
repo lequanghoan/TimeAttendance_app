@@ -1,0 +1,106 @@
+<!--
+<copyright company="nhantinsoft.vn">
+ Author: Mr.Hiep
+ Created Date: 10/10/2017
+</copyright>
+-->
+<style>
+    .text-uppercase{margin-right:7px}
+</style>
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Thống kê mật độ nhận diện nhân viên, khách hàng';">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Tiêu chí thống kê</h2>
+            <div class="actions panel_actions pull-right">
+                <i class="box_toggle material-icons">expand_less</i>
+            </div>
+        </header>
+        <div class="content-body">
+            <form name="searchForm">
+                <div class="row">
+
+                    <!--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" >
+                        <div class="form-group">
+                            <label class="form-label">Chọn tuần</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.Week">
+                                    <option value="1">Tuần 1</option>
+                                    <option value="2">Tuần 2</option>
+                                    <option value="3">Tuần 3</option>
+                                    <option value="4">Tuần 4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" >
+                        <div class="form-group">
+                            <label class="form-label">Tuần(1 đến 52)</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Week" ng-change="vm.ChangeMonth()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" >
+                        <!--<div class="form-group">
+                            <label class="form-label">Tháng</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.Month" ng-disabled="true"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListMonth">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label class="form-label">Thời gian</label>
+                            <div class="controls">
+                                <input type="text" disabled="disabled" class="form-control" data-ng-model="vm.Model.WeekView" ng-change="vm.ChangeMonth()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" >
+                        <div class="form-group">
+                            <label class="form-label">Chọn năm</label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.Year"  ng-change="vm.ChangeMonth()"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListYear">
+                                    <option value="">&lt;&lt; Tất cả &gt;&gt;</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 text-right">
+                        <button class="btn btn-success margin-top-15" type="submit" ng-click="vm.FnSearch()">
+                            <i class="fa fa-search"></i> &nbsp;<span>Tìm kiếm</span>
+                        </button>
+                        <button class="btn btn-default margin-top-15" ng-click="vm.FnClear()">
+                            <i class="fa fa-refresh"></i> &nbsp;<span>Làm mới</span>
+                        </button>
+                    </div>
+                    </div>
+                <!--<div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                      
+                    </div>
+                </div>-->
+            </form>
+        </div>
+    </section>
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left">Thống kê mật độ nhận diện nhân viên, khách hàng</h2>
+            <div class="actions panel_actions pull-right">
+                <i class="box_toggle material-icons">expand_more</i>
+            </div>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div style="padding-top:30px" >
+                        <div id="containerheat" style="margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </section>
+</div>

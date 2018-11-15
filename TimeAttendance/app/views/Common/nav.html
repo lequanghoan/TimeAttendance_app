@@ -1,0 +1,98 @@
+﻿<!-- list -->
+<ul id="nts-menu" class="wraplist wrapper-menu">
+    <!-- Menu for Management -->
+    <li class="auto">
+        <a ui-sref="app.dashboard">
+            <i class="material-icons">home</i>
+            <span class="title">Trang chủ</span>
+        </a>
+    </li>
+    <li class="auto" permission="['SY0001','SY0002','SY0005','SY0006']">
+        <a href="javascript:">
+            <i class="material-icons">settings</i>
+            <span class="title">Quản trị hệ thống</span>
+            <span class="arrow material-icons">keyboard_arrow_right</span>
+        </a>
+        <ul class="wraplist wraplist-sub sub-menu dk">
+            <li ui-sref-active="auto" permission="['SY0001']">
+                <a ui-sref="app.group-user-list">Quản lý nhóm quyền</a>
+            </li>
+            <li ui-sref-active="auto" permission="['SY0002']">
+                <a ui-sref="app.user-list">Tài khoản người dùng</a>
+            </li>
+            <!--<li ui-sref-active="auto" permission="['SY0005']">
+                <a ui-sref="app.log-list">
+                    Lịch sử truy cập
+                </a>
+            </li>-->
+            <li ui-sref-active="auto" permission="['SY0006']">
+                <a ui-sref="app.log-list">
+                    Tra cứu log sử dụng
+                </a>
+            </li>
+
+
+
+        </ul>
+    </li>
+    <li class="auto" permission="['CF0001','CF0002','CF0003']">
+        <a href="javascript:">
+            <i class="material-icons">chrome_reader_mode</i>
+            <span class="title">Quản lý nhân viên</span>
+            <span class="arrow material-icons">keyboard_arrow_right</span>
+        </a>
+        <ul class="wraplist wraplist-sub sub-menu dk">
+            <li ui-sref-active="auto">
+                <a ui-sref="app.Department">
+                    Quản trị phòng ban
+                </a>
+            </li>
+            <li ui-sref-active="auto">
+                <a ui-sref="app.job-title">
+                    Quản lý chức danh
+                </a>
+            </li>
+            <li ui-sref-active="auto">
+                <a ui-sref="app.employee-list">
+                    Quản lý nhân viên
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="auto" permission="['ST0001','ST0002','ST0003','ST0004']">
+        <a href="javascript:">
+            <i class="material-icons">insert_chart</i>
+            <span class="title">Thống kê báo cáo</span>
+            <span class="arrow material-icons">keyboard_arrow_right</span>
+        </a>
+        <ul class="wraplist wraplist-sub sub-menu dk">
+            <li ui-sref-active="auto">
+                <a ui-sref="app.report-list">
+                    Thống kê giờ làm
+                </a>
+            </li>
+            <li ui-sref-active="auto">
+                <a ui-sref="app.AttendanceLog">
+                    Thống kê lượt vào ra
+                </a>
+            </li>
+            <li ui-sref-active="auto">
+                <a ui-sref="app.NoAttendanceLog">
+                    Thống kê nhân viên không chấm công
+                </a>
+            </li>
+
+            <li ui-sref-active="auto" style="display:none">
+                <a ui-sref="app.tranlog-list">
+                    Thống kê nhận diện thành công, lỗi
+                </a>
+            </li>
+            <li ui-sref-active="auto">
+                <a ui-sref="app.density-list">
+                    Thống kê theo mật độ
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- / list -->

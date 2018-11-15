@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a639f50ef5744b0be2abef421d66f70" Name="Diagram1">
+        <EntityTypeShape EntityType="TimeAttendanceModel.AttendanceLog" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.Department" Width="1.5" PointX="10.75" PointY="2.375" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.Employee" Width="1.5" PointX="13" PointY="1.125" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.Function" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.Group" Width="1.5" PointX="3" PointY="7.125" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.GroupFunction" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.GroupPermission" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.JobTitle" Width="1.5" PointX="10.75" PointY="7.375" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.SyncTimeAttendance" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.SystemParam" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.TimeAttendanceLog" Width="1.5" PointX="15.25" PointY="2" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.TransactionLog" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.User" Width="1.5" PointX="6" PointY="5.875" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.UserEventLog" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.UserGroup" Width="1.5" PointX="8.25" PointY="7.625" />
+        <EntityTypeShape EntityType="TimeAttendanceModel.UserPermission" Width="1.5" PointX="8.25" PointY="2.625" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__Employee__Depart__3B75D760" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__Employee__JobTit__3A81B327" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__TimeAtten__Emplo__3C69FB99" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__Function__GroupF__2F10007B" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__Function__GroupF__300424B4" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__GroupPerm__Funct__30F848ED" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__GroupPerm__Funct__31EC6D26" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserPermi__Funct__398D8EEE" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserPermi__Funct__3A81B327" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__GroupPerm__Group__32E0915F" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__GroupPerm__Group__33D4B598" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserGroup__Group__35BCFE0A" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserGroup__Group__36B12243" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserGroup__UserI__37A5467C" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserGroup__UserI__38996AB5" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserPermi__UserI__3B75D760" />
+        <AssociationConnector Association="TimeAttendanceModel.FK__UserPermi__UserI__3C69FB99" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

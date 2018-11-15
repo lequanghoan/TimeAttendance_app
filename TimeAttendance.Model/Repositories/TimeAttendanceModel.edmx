@@ -1,0 +1,1355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TimeAttendanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AttendanceLog">
+          <Key>
+            <PropertyRef Name="AttendanceLogId" />
+          </Key>
+          <Property Name="AttendanceLogId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="EmployeeId" Type="varchar" MaxLength="36" />
+          <Property Name="ClientIPAddress" Type="varchar" MaxLength="36" />
+          <Property Name="CameraIPAdress" Type="varchar" MaxLength="36" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="ImageLink" Type="varchar" MaxLength="255" />
+          <Property Name="Confidence" Type="float" />
+          <Property Name="FaceCount" Type="int" />
+          <Property Name="ImageFace" Type="varchar" MaxLength="255" />
+          <Property Name="Note" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="36" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="36" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="DepartmentId" Type="varchar" MaxLength="36" />
+          <Property Name="JobTitleId" Type="varchar" MaxLength="36" />
+          <Property Name="FaceId" Type="varchar" MaxLength="128" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="InComeDate" Type="datetime" />
+          <Property Name="OutComeDate" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdentifyCardNumber" Type="varchar" MaxLength="15" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="LinkImageFaceId" Type="nvarchar(max)" />
+          <Property Name="LinkImage" Type="nvarchar(max)" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="36" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="FunctionId" />
+          </Key>
+          <Property Name="FunctionId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="GroupFunctionId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="36" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="36" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="HomePage" Type="nvarchar" MaxLength="255" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="36" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="36" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupFunction">
+          <Key>
+            <PropertyRef Name="GroupFunctionId" />
+          </Key>
+          <Property Name="GroupFunctionId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="36" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="36" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupPermission">
+          <Key>
+            <PropertyRef Name="GroupPermissionId" />
+          </Key>
+          <Property Name="GroupPermissionId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="GroupId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="FunctionId" Type="varchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobTitle">
+          <Key>
+            <PropertyRef Name="JobTitleId" />
+          </Key>
+          <Property Name="JobTitleId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="36" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="36" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SyncTimeAttendance">
+          <Key>
+            <PropertyRef Name="SyncAttendanceId" />
+          </Key>
+          <Property Name="SyncAttendanceId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="EmployeeId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="20" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="JobTitleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="TimeIn" Type="datetime" />
+          <Property Name="TimeOut" Type="datetime" />
+          <Property Name="Total" Type="int" />
+          <Property Name="LateMinutes" Type="int" />
+          <Property Name="EarlyMinutes" Type="int" />
+          <Property Name="IsLate" Type="bit" />
+          <Property Name="IsEarly" Type="bit" />
+          <Property Name="IsAbsent" Type="bit" />
+        </EntityType>
+        <EntityType Name="SystemParam">
+          <Key>
+            <PropertyRef Name="SystemParamId" />
+          </Key>
+          <Property Name="SystemParamId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="ParamName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ParamValue" Type="nvarchar(max)" />
+          <Property Name="YearValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="MonthValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TimeAttendanceLog">
+          <Key>
+            <PropertyRef Name="TimeAttendanceLogId" />
+          </Key>
+          <Property Name="TimeAttendanceLogId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="EmployeeId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="TimeIn" Type="datetime" />
+          <Property Name="ImageIn" Type="varchar" MaxLength="255" />
+          <Property Name="TimeOut" Type="datetime" />
+          <Property Name="ImageOut" Type="varchar" MaxLength="255" />
+          <Property Name="Total" Type="int" />
+          <Property Name="LateMinutes" Type="int" />
+          <Property Name="EarlyMinutes" Type="int" />
+          <Property Name="ImageFaceIn" Type="varchar" MaxLength="255" />
+          <Property Name="ImageFaceOut" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TransactionLog">
+          <Key>
+            <PropertyRef Name="TransactionLogId" />
+          </Key>
+          <Property Name="TransactionLogId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="ClientIPAddress" Type="varchar" MaxLength="36" />
+          <Property Name="CameraIPAdress" Type="varchar" MaxLength="36" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="CallDateTime" Type="datetime" />
+          <Property Name="ImageLink" Type="varchar" MaxLength="255" />
+          <Property Name="ResponseDateTime" Type="datetime" />
+          <Property Name="StatusCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ResponseTime" Type="float" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" />
+          <Property Name="BirthDay" Type="datetime" />
+          <Property Name="Agency" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="UnitId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="32" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="64" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Type" Type="char" MaxLength="1" />
+          <Property Name="IsAdmin" Type="int" Nullable="false" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="36" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="36" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserEventLog">
+          <Key>
+            <PropertyRef Name="UserEventLogId" />
+          </Key>
+          <Property Name="UserEventLogId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="ViolationEventId" Type="varchar" MaxLength="36" />
+          <Property Name="UserId" Type="varchar" MaxLength="36" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="LogType" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="UserGroupId" />
+          </Key>
+          <Property Name="UserGroupId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="GroupId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="UserPermissionId" />
+          </Key>
+          <Property Name="UserPermissionId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="FunctionId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Employee__Depart__3B75D760">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__JobTit__3A81B327">
+          <End Role="JobTitle" Type="Self.JobTitle" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitle">
+              <PropertyRef Name="JobTitleId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="JobTitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Function__GroupF__2F10007B">
+          <End Role="GroupFunction" Type="Self.GroupFunction" Multiplicity="1" />
+          <End Role="Function" Type="Self.Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupFunction">
+              <PropertyRef Name="GroupFunctionId" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="GroupFunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Function__GroupF__300424B4">
+          <End Role="GroupFunction" Type="Self.GroupFunction" Multiplicity="1" />
+          <End Role="Function" Type="Self.Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupFunction">
+              <PropertyRef Name="GroupFunctionId" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="GroupFunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Funct__30F848ED">
+          <End Role="Function" Type="Self.Function" Multiplicity="1" />
+          <End Role="GroupPermission" Type="Self.GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Funct__31EC6D26">
+          <End Role="Function" Type="Self.Function" Multiplicity="1" />
+          <End Role="GroupPermission" Type="Self.GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Group__32E0915F">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupPermission" Type="Self.GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Group__33D4B598">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupPermission" Type="Self.GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TimeAtten__Emplo__3C69FB99">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TimeAttendanceLog" Type="Self.TimeAttendanceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="TimeAttendanceLog">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__Group__35BCFE0A">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__Group__36B12243">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__UserI__37A5467C">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__UserI__38996AB5">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__Funct__398D8EEE">
+          <End Role="Function" Type="Self.Function" Multiplicity="1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__Funct__3A81B327">
+          <End Role="Function" Type="Self.Function" Multiplicity="1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__UserI__3B75D760">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__UserI__3C69FB99">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TimeAttendanceModelStoreContainer">
+          <EntitySet Name="AttendanceLog" EntityType="Self.AttendanceLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Function" EntityType="Self.Function" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupFunction" EntityType="Self.GroupFunction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPermission" EntityType="Self.GroupPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobTitle" EntityType="Self.JobTitle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SyncTimeAttendance" EntityType="Self.SyncTimeAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemParam" EntityType="Self.SystemParam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeAttendanceLog" EntityType="Self.TimeAttendanceLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionLog" EntityType="Self.TransactionLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEventLog" EntityType="Self.UserEventLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPermission" EntityType="Self.UserPermission" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Employee__Depart__3B75D760" Association="Self.FK__Employee__Depart__3B75D760">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__JobTit__3A81B327" Association="Self.FK__Employee__JobTit__3A81B327">
+            <End Role="JobTitle" EntitySet="JobTitle" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Function__GroupF__2F10007B" Association="Self.FK__Function__GroupF__2F10007B">
+            <End Role="GroupFunction" EntitySet="GroupFunction" />
+            <End Role="Function" EntitySet="Function" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Function__GroupF__300424B4" Association="Self.FK__Function__GroupF__300424B4">
+            <End Role="GroupFunction" EntitySet="GroupFunction" />
+            <End Role="Function" EntitySet="Function" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Funct__30F848ED" Association="Self.FK__GroupPerm__Funct__30F848ED">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Funct__31EC6D26" Association="Self.FK__GroupPerm__Funct__31EC6D26">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Group__32E0915F" Association="Self.FK__GroupPerm__Group__32E0915F">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Group__33D4B598" Association="Self.FK__GroupPerm__Group__33D4B598">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimeAtten__Emplo__3C69FB99" Association="Self.FK__TimeAtten__Emplo__3C69FB99">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TimeAttendanceLog" EntitySet="TimeAttendanceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__Group__35BCFE0A" Association="Self.FK__UserGroup__Group__35BCFE0A">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__Group__36B12243" Association="Self.FK__UserGroup__Group__36B12243">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__UserI__37A5467C" Association="Self.FK__UserGroup__UserI__37A5467C">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__UserI__38996AB5" Association="Self.FK__UserGroup__UserI__38996AB5">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__Funct__398D8EEE" Association="Self.FK__UserPermi__Funct__398D8EEE">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__Funct__3A81B327" Association="Self.FK__UserPermi__Funct__3A81B327">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__UserI__3B75D760" Association="Self.FK__UserPermi__UserI__3B75D760">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__UserI__3C69FB99" Association="Self.FK__UserPermi__UserI__3C69FB99">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TimeAttendanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TimeAttendanceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttendanceLog" EntityType="TimeAttendanceModel.AttendanceLog" />
+          <EntitySet Name="Department" EntityType="TimeAttendanceModel.Department" />
+          <EntitySet Name="Employee" EntityType="TimeAttendanceModel.Employee" />
+          <EntitySet Name="Function" EntityType="TimeAttendanceModel.Function" />
+          <EntitySet Name="Group" EntityType="TimeAttendanceModel.Group" />
+          <EntitySet Name="GroupFunction" EntityType="TimeAttendanceModel.GroupFunction" />
+          <EntitySet Name="GroupPermission" EntityType="TimeAttendanceModel.GroupPermission" />
+          <EntitySet Name="JobTitle" EntityType="TimeAttendanceModel.JobTitle" />
+          <EntitySet Name="SyncTimeAttendance" EntityType="TimeAttendanceModel.SyncTimeAttendance" />
+          <EntitySet Name="SystemParam" EntityType="TimeAttendanceModel.SystemParam" />
+          <EntitySet Name="TimeAttendanceLog" EntityType="TimeAttendanceModel.TimeAttendanceLog" />
+          <EntitySet Name="TransactionLog" EntityType="TimeAttendanceModel.TransactionLog" />
+          <EntitySet Name="User" EntityType="TimeAttendanceModel.User" />
+          <EntitySet Name="UserEventLog" EntityType="TimeAttendanceModel.UserEventLog" />
+          <EntitySet Name="UserGroup" EntityType="TimeAttendanceModel.UserGroup" />
+          <EntitySet Name="UserPermission" EntityType="TimeAttendanceModel.UserPermission" />
+          <AssociationSet Name="FK__Employee__Depart__3B75D760" Association="TimeAttendanceModel.FK__Employee__Depart__3B75D760">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__JobTit__3A81B327" Association="TimeAttendanceModel.FK__Employee__JobTit__3A81B327">
+            <End Role="JobTitle" EntitySet="JobTitle" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimeAtten__Emplo__3C69FB99" Association="TimeAttendanceModel.FK__TimeAtten__Emplo__3C69FB99">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TimeAttendanceLog" EntitySet="TimeAttendanceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Function__GroupF__2F10007B" Association="TimeAttendanceModel.FK__Function__GroupF__2F10007B">
+            <End Role="GroupFunction" EntitySet="GroupFunction" />
+            <End Role="Function" EntitySet="Function" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Function__GroupF__300424B4" Association="TimeAttendanceModel.FK__Function__GroupF__300424B4">
+            <End Role="GroupFunction" EntitySet="GroupFunction" />
+            <End Role="Function" EntitySet="Function" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Funct__30F848ED" Association="TimeAttendanceModel.FK__GroupPerm__Funct__30F848ED">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Funct__31EC6D26" Association="TimeAttendanceModel.FK__GroupPerm__Funct__31EC6D26">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__Funct__398D8EEE" Association="TimeAttendanceModel.FK__UserPermi__Funct__398D8EEE">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__Funct__3A81B327" Association="TimeAttendanceModel.FK__UserPermi__Funct__3A81B327">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Group__32E0915F" Association="TimeAttendanceModel.FK__GroupPerm__Group__32E0915F">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupPerm__Group__33D4B598" Association="TimeAttendanceModel.FK__GroupPerm__Group__33D4B598">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupPermission" EntitySet="GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__Group__35BCFE0A" Association="TimeAttendanceModel.FK__UserGroup__Group__35BCFE0A">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__Group__36B12243" Association="TimeAttendanceModel.FK__UserGroup__Group__36B12243">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__UserI__37A5467C" Association="TimeAttendanceModel.FK__UserGroup__UserI__37A5467C">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserGroup__UserI__38996AB5" Association="TimeAttendanceModel.FK__UserGroup__UserI__38996AB5">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserGroup" EntitySet="UserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__UserI__3B75D760" Association="TimeAttendanceModel.FK__UserPermi__UserI__3B75D760">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPermi__UserI__3C69FB99" Association="TimeAttendanceModel.FK__UserPermi__UserI__3C69FB99">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AttendanceLog">
+          <Key>
+            <PropertyRef Name="AttendanceLogId" />
+          </Key>
+          <Property Name="AttendanceLogId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="ClientIPAddress" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CameraIPAdress" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="ImageLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Confidence" Type="Double" />
+          <Property Name="FaceCount" Type="Int32" />
+          <Property Name="ImageFace" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="TimeAttendanceModel.FK__Employee__Depart__3B75D760" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="JobTitleId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="FaceId" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="InComeDate" Type="DateTime" Precision="3" />
+          <Property Name="OutComeDate" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdentifyCardNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkImageFaceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Department" Relationship="TimeAttendanceModel.FK__Employee__Depart__3B75D760" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="JobTitle" Relationship="TimeAttendanceModel.FK__Employee__JobTit__3A81B327" FromRole="Employee" ToRole="JobTitle" />
+          <NavigationProperty Name="TimeAttendanceLog" Relationship="TimeAttendanceModel.FK__TimeAtten__Emplo__3C69FB99" FromRole="Employee" ToRole="TimeAttendanceLog" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="FunctionId" />
+          </Key>
+          <Property Name="FunctionId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="GroupFunctionId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GroupFunction" Relationship="TimeAttendanceModel.FK__Function__GroupF__2F10007B" FromRole="Function" ToRole="GroupFunction" />
+          <NavigationProperty Name="GroupFunction1" Relationship="TimeAttendanceModel.FK__Function__GroupF__300424B4" FromRole="Function" ToRole="GroupFunction" />
+          <NavigationProperty Name="GroupPermission" Relationship="TimeAttendanceModel.FK__GroupPerm__Funct__30F848ED" FromRole="Function" ToRole="GroupPermission" />
+          <NavigationProperty Name="GroupPermission1" Relationship="TimeAttendanceModel.FK__GroupPerm__Funct__31EC6D26" FromRole="Function" ToRole="GroupPermission" />
+          <NavigationProperty Name="UserPermission" Relationship="TimeAttendanceModel.FK__UserPermi__Funct__398D8EEE" FromRole="Function" ToRole="UserPermission" />
+          <NavigationProperty Name="UserPermission1" Relationship="TimeAttendanceModel.FK__UserPermi__Funct__3A81B327" FromRole="Function" ToRole="UserPermission" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HomePage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GroupPermission" Relationship="TimeAttendanceModel.FK__GroupPerm__Group__32E0915F" FromRole="Group" ToRole="GroupPermission" />
+          <NavigationProperty Name="GroupPermission1" Relationship="TimeAttendanceModel.FK__GroupPerm__Group__33D4B598" FromRole="Group" ToRole="GroupPermission" />
+          <NavigationProperty Name="UserGroup" Relationship="TimeAttendanceModel.FK__UserGroup__Group__35BCFE0A" FromRole="Group" ToRole="UserGroup" />
+          <NavigationProperty Name="UserGroup1" Relationship="TimeAttendanceModel.FK__UserGroup__Group__36B12243" FromRole="Group" ToRole="UserGroup" />
+        </EntityType>
+        <EntityType Name="GroupFunction">
+          <Key>
+            <PropertyRef Name="GroupFunctionId" />
+          </Key>
+          <Property Name="GroupFunctionId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Function" Relationship="TimeAttendanceModel.FK__Function__GroupF__2F10007B" FromRole="GroupFunction" ToRole="Function" />
+          <NavigationProperty Name="Function1" Relationship="TimeAttendanceModel.FK__Function__GroupF__300424B4" FromRole="GroupFunction" ToRole="Function" />
+        </EntityType>
+        <EntityType Name="GroupPermission">
+          <Key>
+            <PropertyRef Name="GroupPermissionId" />
+          </Key>
+          <Property Name="GroupPermissionId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="GroupId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="FunctionId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Function" Relationship="TimeAttendanceModel.FK__GroupPerm__Funct__30F848ED" FromRole="GroupPermission" ToRole="Function" />
+          <NavigationProperty Name="Function1" Relationship="TimeAttendanceModel.FK__GroupPerm__Funct__31EC6D26" FromRole="GroupPermission" ToRole="Function" />
+          <NavigationProperty Name="Group" Relationship="TimeAttendanceModel.FK__GroupPerm__Group__32E0915F" FromRole="GroupPermission" ToRole="Group" />
+          <NavigationProperty Name="Group1" Relationship="TimeAttendanceModel.FK__GroupPerm__Group__33D4B598" FromRole="GroupPermission" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="JobTitle">
+          <Key>
+            <PropertyRef Name="JobTitleId" />
+          </Key>
+          <Property Name="JobTitleId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="TimeAttendanceModel.FK__Employee__JobTit__3A81B327" FromRole="JobTitle" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="SyncTimeAttendance">
+          <Key>
+            <PropertyRef Name="SyncAttendanceId" />
+          </Key>
+          <Property Name="SyncAttendanceId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeIn" Type="DateTime" Precision="3" />
+          <Property Name="TimeOut" Type="DateTime" Precision="3" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="LateMinutes" Type="Int32" />
+          <Property Name="EarlyMinutes" Type="Int32" />
+          <Property Name="IsLate" Type="Boolean" />
+          <Property Name="IsEarly" Type="Boolean" />
+          <Property Name="IsAbsent" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SystemParam">
+          <Key>
+            <PropertyRef Name="SystemParamId" />
+          </Key>
+          <Property Name="SystemParamId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="ParamName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ParamValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YearValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MonthValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TimeAttendanceLog">
+          <Key>
+            <PropertyRef Name="TimeAttendanceLogId" />
+          </Key>
+          <Property Name="TimeAttendanceLogId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeIn" Type="DateTime" Precision="3" />
+          <Property Name="ImageIn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TimeOut" Type="DateTime" Precision="3" />
+          <Property Name="ImageOut" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="LateMinutes" Type="Int32" />
+          <Property Name="EarlyMinutes" Type="Int32" />
+          <Property Name="ImageFaceIn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ImageFaceOut" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="TimeAttendanceModel.FK__TimeAtten__Emplo__3C69FB99" FromRole="TimeAttendanceLog" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="TransactionLog">
+          <Key>
+            <PropertyRef Name="TransactionLogId" />
+          </Key>
+          <Property Name="TransactionLogId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="ClientIPAddress" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CameraIPAdress" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="CallDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ImageLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseDateTime" Type="DateTime" Precision="3" />
+          <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseTime" Type="Double" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="Agency" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UnitId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsAdmin" Type="Int32" Nullable="false" />
+          <Property Name="CreateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserGroup" Relationship="TimeAttendanceModel.FK__UserGroup__UserI__37A5467C" FromRole="User" ToRole="UserGroup" />
+          <NavigationProperty Name="UserGroup1" Relationship="TimeAttendanceModel.FK__UserGroup__UserI__38996AB5" FromRole="User" ToRole="UserGroup" />
+          <NavigationProperty Name="UserPermission" Relationship="TimeAttendanceModel.FK__UserPermi__UserI__3B75D760" FromRole="User" ToRole="UserPermission" />
+          <NavigationProperty Name="UserPermission1" Relationship="TimeAttendanceModel.FK__UserPermi__UserI__3C69FB99" FromRole="User" ToRole="UserPermission" />
+        </EntityType>
+        <EntityType Name="UserEventLog">
+          <Key>
+            <PropertyRef Name="UserEventLogId" />
+          </Key>
+          <Property Name="UserEventLogId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="ViolationEventId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogType" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="UserGroupId" />
+          </Key>
+          <Property Name="UserGroupId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="GroupId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Group" Relationship="TimeAttendanceModel.FK__UserGroup__Group__35BCFE0A" FromRole="UserGroup" ToRole="Group" />
+          <NavigationProperty Name="Group1" Relationship="TimeAttendanceModel.FK__UserGroup__Group__36B12243" FromRole="UserGroup" ToRole="Group" />
+          <NavigationProperty Name="User" Relationship="TimeAttendanceModel.FK__UserGroup__UserI__37A5467C" FromRole="UserGroup" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="TimeAttendanceModel.FK__UserGroup__UserI__38996AB5" FromRole="UserGroup" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="UserPermissionId" />
+          </Key>
+          <Property Name="UserPermissionId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="FunctionId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Function" Relationship="TimeAttendanceModel.FK__UserPermi__Funct__398D8EEE" FromRole="UserPermission" ToRole="Function" />
+          <NavigationProperty Name="Function1" Relationship="TimeAttendanceModel.FK__UserPermi__Funct__3A81B327" FromRole="UserPermission" ToRole="Function" />
+          <NavigationProperty Name="User" Relationship="TimeAttendanceModel.FK__UserPermi__UserI__3B75D760" FromRole="UserPermission" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="TimeAttendanceModel.FK__UserPermi__UserI__3C69FB99" FromRole="UserPermission" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Employee__Depart__3B75D760">
+          <End Type="TimeAttendanceModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="TimeAttendanceModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__JobTit__3A81B327">
+          <End Type="TimeAttendanceModel.JobTitle" Role="JobTitle" Multiplicity="0..1" />
+          <End Type="TimeAttendanceModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitle">
+              <PropertyRef Name="JobTitleId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="JobTitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TimeAtten__Emplo__3C69FB99">
+          <End Type="TimeAttendanceModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.TimeAttendanceLog" Role="TimeAttendanceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="TimeAttendanceLog">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Function__GroupF__2F10007B">
+          <End Type="TimeAttendanceModel.GroupFunction" Role="GroupFunction" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.Function" Role="Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupFunction">
+              <PropertyRef Name="GroupFunctionId" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="GroupFunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Function__GroupF__300424B4">
+          <End Type="TimeAttendanceModel.GroupFunction" Role="GroupFunction" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.Function" Role="Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupFunction">
+              <PropertyRef Name="GroupFunctionId" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="GroupFunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Funct__30F848ED">
+          <End Type="TimeAttendanceModel.Function" Role="Function" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.GroupPermission" Role="GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Funct__31EC6D26">
+          <End Type="TimeAttendanceModel.Function" Role="Function" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.GroupPermission" Role="GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__Funct__398D8EEE">
+          <End Type="TimeAttendanceModel.Function" Role="Function" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserPermission" Role="UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__Funct__3A81B327">
+          <End Type="TimeAttendanceModel.Function" Role="Function" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserPermission" Role="UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="FunctionId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Group__32E0915F">
+          <End Type="TimeAttendanceModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.GroupPermission" Role="GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupPerm__Group__33D4B598">
+          <End Type="TimeAttendanceModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.GroupPermission" Role="GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="GroupPermission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__Group__35BCFE0A">
+          <End Type="TimeAttendanceModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserGroup" Role="UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__Group__36B12243">
+          <End Type="TimeAttendanceModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserGroup" Role="UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__UserI__37A5467C">
+          <End Type="TimeAttendanceModel.User" Role="User" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserGroup" Role="UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserGroup__UserI__38996AB5">
+          <End Type="TimeAttendanceModel.User" Role="User" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserGroup" Role="UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserGroup">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__UserI__3B75D760">
+          <End Type="TimeAttendanceModel.User" Role="User" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserPermission" Role="UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPermi__UserI__3C69FB99">
+          <End Type="TimeAttendanceModel.User" Role="User" Multiplicity="1" />
+          <End Type="TimeAttendanceModel.UserPermission" Role="UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TimeAttendanceModelStoreContainer" CdmEntityContainer="TimeAttendanceEntities">
+          <EntitySetMapping Name="AttendanceLog">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.AttendanceLog">
+              <MappingFragment StoreEntitySet="AttendanceLog">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ImageFace" ColumnName="ImageFace" />
+                <ScalarProperty Name="FaceCount" ColumnName="FaceCount" />
+                <ScalarProperty Name="Confidence" ColumnName="Confidence" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CameraIPAdress" ColumnName="CameraIPAdress" />
+                <ScalarProperty Name="ClientIPAddress" ColumnName="ClientIPAddress" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="AttendanceLogId" ColumnName="AttendanceLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="LinkImage" ColumnName="LinkImage" />
+                <ScalarProperty Name="LinkImageFaceId" ColumnName="LinkImageFaceId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdentifyCardNumber" ColumnName="IdentifyCardNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OutComeDate" ColumnName="OutComeDate" />
+                <ScalarProperty Name="InComeDate" ColumnName="InComeDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FaceId" ColumnName="FaceId" />
+                <ScalarProperty Name="JobTitleId" ColumnName="JobTitleId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Function">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.Function">
+              <MappingFragment StoreEntitySet="Function">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="GroupFunctionId" ColumnName="GroupFunctionId" />
+                <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupFunction">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.GroupFunction">
+              <MappingFragment StoreEntitySet="GroupFunction">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="GroupFunctionId" ColumnName="GroupFunctionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPermission">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.GroupPermission">
+              <MappingFragment StoreEntitySet="GroupPermission">
+                <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupPermissionId" ColumnName="GroupPermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobTitle">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.JobTitle">
+              <MappingFragment StoreEntitySet="JobTitle">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="JobTitleId" ColumnName="JobTitleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SyncTimeAttendance">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.SyncTimeAttendance">
+              <MappingFragment StoreEntitySet="SyncTimeAttendance">
+                <ScalarProperty Name="IsAbsent" ColumnName="IsAbsent" />
+                <ScalarProperty Name="IsEarly" ColumnName="IsEarly" />
+                <ScalarProperty Name="IsLate" ColumnName="IsLate" />
+                <ScalarProperty Name="EarlyMinutes" ColumnName="EarlyMinutes" />
+                <ScalarProperty Name="LateMinutes" ColumnName="LateMinutes" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+                <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="JobTitleName" ColumnName="JobTitleName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="SyncAttendanceId" ColumnName="SyncAttendanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParam">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.SystemParam">
+              <MappingFragment StoreEntitySet="SystemParam">
+                <ScalarProperty Name="MonthValue" ColumnName="MonthValue" />
+                <ScalarProperty Name="YearValue" ColumnName="YearValue" />
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="ParamName" ColumnName="ParamName" />
+                <ScalarProperty Name="SystemParamId" ColumnName="SystemParamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeAttendanceLog">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.TimeAttendanceLog">
+              <MappingFragment StoreEntitySet="TimeAttendanceLog">
+                <ScalarProperty Name="ImageFaceOut" ColumnName="ImageFaceOut" />
+                <ScalarProperty Name="ImageFaceIn" ColumnName="ImageFaceIn" />
+                <ScalarProperty Name="EarlyMinutes" ColumnName="EarlyMinutes" />
+                <ScalarProperty Name="LateMinutes" ColumnName="LateMinutes" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ImageOut" ColumnName="ImageOut" />
+                <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+                <ScalarProperty Name="ImageIn" ColumnName="ImageIn" />
+                <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="TimeAttendanceLogId" ColumnName="TimeAttendanceLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionLog">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.TransactionLog">
+              <MappingFragment StoreEntitySet="TransactionLog">
+                <ScalarProperty Name="ResponseTime" ColumnName="ResponseTime" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="ResponseDateTime" ColumnName="ResponseDateTime" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="CallDateTime" ColumnName="CallDateTime" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CameraIPAdress" ColumnName="CameraIPAdress" />
+                <ScalarProperty Name="ClientIPAddress" ColumnName="ClientIPAddress" />
+                <ScalarProperty Name="TransactionLogId" ColumnName="TransactionLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Agency" ColumnName="Agency" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEventLog">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.UserEventLog">
+              <MappingFragment StoreEntitySet="UserEventLog">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ViolationEventId" ColumnName="ViolationEventId" />
+                <ScalarProperty Name="UserEventLogId" ColumnName="UserEventLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroup">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPermission">
+            <EntityTypeMapping TypeName="TimeAttendanceModel.UserPermission">
+              <MappingFragment StoreEntitySet="UserPermission">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+                <ScalarProperty Name="UserPermissionId" ColumnName="UserPermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,196 @@
+<!--
+<copyright company="nhantinsoft.vn">
+Author: Vũ Văn Văn
+Created Date: 30/09/2017 13:08
+</copyright>
+-->
+<style type="text/css">
+    .func {
+        color: royalblue;
+        background-color: antiquewhite;
+        font-weight: bold;
+    }
+</style>
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Thêm mới tài khoản quản trị';permisstion='SY0002'">
+    <form name="createForm">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Thông tin thêm mới</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                </div>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label class="form-label">Tài khoản<span class='text-danger text-strong'>&nbsp;*</span></label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Name" required maxlength="500">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4"  style="display:none">
+                        <div class="form-group">
+                            <label class="form-label">Đơn vị quản lý<span class='text-danger text-strong'>&nbsp;*</span></label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.UnitId"
+                                        data-ng-options="unit.Id as unit.Name for unit in vm.ListUnit"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label class="form-label">Họ tên<span class='text-danger text-strong'>&nbsp;*</span></label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.FullName" required maxlength="500">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                        <div class="form-group">
+                            <label class="form-label">Chức vụ</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" data-ng-model="vm.Model.Role" maxlength="500">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                        <div class="form-group">
+                            <label class="form-label">Ngày sinh</label>
+                            <div class="controls">
+                                <datepicker-full model-date="vm.Model.BirthDay"></datepicker-full>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label class="form-label">Email<span class="text-danger" ng-show="createForm.email.$error.pattern">&nbsp;(Email không đúng định dạng!)</span></label>
+                            <div class="controls">
+                                <input type="text" name="email" class="form-control" data-ng-model="vm.Model.Email" maxlength="500" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,}$/">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label class="form-label">Điện thoại</label>
+                            <div class="controls">
+                                <input type="text" class="form-control inputphone" data-ng-model="vm.Model.PhoneNumber" maxlength="11">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
+                        <div class="form-group">
+                            <label class="form-label">Mô tả</label>
+                            <div class="controls">
+                                <textarea style="margin: 0px; width: 100%; height: 90px;" data-ng-model="vm.Model.Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="form-group" flow-init="{singleFile:true}"
+                             flow-file-added="!!{png:1,jpg:1,jpeg:1}[$file.getExtension()]"
+                             flow-files-submitted="$flow.upload()" flow-name="obj.flow">
+                            <label class="form-label">
+                                Ảnh đại diện
+                                <a href="javascript:void(0)" class="btn btn-view btn-accent cursor-pointer" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}" title="Chọn ảnh"><i class="fa fa-upload"></i></a>
+                                <a href="javascript:void(0)" class="btn btn-view btn-danger cursor-pointer" ng-show="$flow.files.length" ng-click="$flow.cancel()" title="Xóa ảnh"><i class="fa fa-remove"></i></a>
+                            </label>
+                            <div class="controls text-center">
+                                <div class="thumbnail_image" ng-hide="$flow.files.length">
+                                    <img src="/img/no-image.png" style="height: 100px"/>
+                                </div>
+                                <div class="thumbnail_image" ng-show="$flow.files.length">
+                                    <img flow-img="$flow.files[0]" style="height: 100px" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="box">
+            <header class="panel_header">
+                <h2 class="title pull-left">Phân quyền cho tài khoản</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                </div>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label class="form-label">Nhóm quyền tài khoản<span class='text-danger text-strong'>&nbsp;*</span></label>
+                            <div class="controls">
+                                <select class="form-control" data-ng-model="vm.Model.GroupId" required
+                                        data-ng-options="unit.GroupId as unit.Name for unit in vm.ListGroup" ng-change="vm.FnChangeGroup()">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-7 col-sm-5 col-md-5 col-lg-4 text-left">
+                        <div class="form-group hide-phone">&nbsp;</div>
+                        <div class="controls">
+                            <label class="form-label">Tổng số <span class="bold text-danger">{{vm.TotalGroup}}</span> nhóm quyền / Tổng số <span class="bold text-danger">{{vm.TotalFunc}}</span> quyền</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-sm-3 col-md-3 col-lg-4 text-right">
+                        <div class="form-group hide-phone">&nbsp;</div>
+                        <div class="controls">
+                            <label class="form-label">Đã chọn <span class="bold text-danger">{{vm.TotalChoose}}</span> quyền</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="overflow: auto;max-height:300px;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="80px" style="text-align:center">
+                                        <label class="icheck form-label ">
+                                            <input type="checkbox" ng-click="vm.FnSelectAll()" ng-model="vm.SelectAll">
+                                            <i></i>
+                                        </label>
+                                    </th>
+                                    <th width="50px" style="text-align:center">STT</th>
+                                    <th>Mã nhóm quyền / Mã quyền</th>
+                                    <th>Tên nhóm quyền / Tên quyền</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in vm.ListFunction" ng-class="{func:row.GroupFunctionId==''}">
+                                    <td style="text-align:center">
+                                        <label class="icheck form-label ">
+                                            <input type="checkbox" ng-click="vm.FnSelect(row)" ng-model="row.Select">
+                                            <i></i>
+                                        </label>
+                                    </td>
+                                    <td style="text-align:center">{{row.Index}}</td>
+                                    <td>{{row.Code}}</td>
+                                    <td>{{row.Name}}</td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-left pull-right  padding-bottom-10">
+                <button type="button" ng-disabled="createForm.$invalid" class="btn btn-success" data-ng-click="vm.FnContinue()">
+                    <i class="fa fa-clipboard"></i> &nbsp;<span>Lưu và tiếp tục</span>
+                </button>
+                <button type="button" ng-disabled="createForm.$invalid" class="btn btn-success" data-ng-click="vm.FnAdd()">
+                    <i class="fa fa fa-floppy-o"></i> &nbsp;<span>Lưu</span>
+                </button>
+                <button type="button" class="btn btn-default" data-ng-click="vm.FnClear()">
+                    <i class="fa fa-refresh"></i> &nbsp;<span>Làm mới</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
